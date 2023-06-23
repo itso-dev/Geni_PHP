@@ -1,0 +1,637 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+/* @font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+.mo-br768 {
+  display: none;
+}
+
+.max {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 헤더 */
+#apply-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  border-bottom: rgba(4, 24, 163, 0.5) 1px solid;
+  max-height: 110px;
+  background-color: #fff;
+  z-index: 10;
+}
+
+#apply-header img {
+  padding: 33px 0;
+  max-width: 86px;
+  width: 25%;
+}
+
+#apply-container {
+  top: 110px;
+  position: relative;
+}
+
+#apply-container .apply-page {
+  position: relative;
+  padding: 150px 0 155px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#apply-container .apply-page .title {
+  width: 100%;
+  color: #333;
+  text-align: center;
+  font-size: 50px;
+  font-family: "SCoreDream";
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: -2.5px;
+}
+#apply-container .apply-page .title span {
+  font-weight: 600;
+  color: #02167c;
+}
+#apply-container .apply-page .sub-title {
+  width: 100%;
+  margin-top: 60px;
+  color: #333;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Noto Sans KR";
+  font-weight: 300;
+  line-height: 170%;
+  word-break: keep-all;
+}
+
+#apply-container .apply-page .car {
+  max-width: 540px;
+  position: absolute;
+  bottom: 0;
+  right: 7%;
+}
+
+#apply-container .line {
+  border: #eee 5px solid;
+  height: 10px;
+}
+
+/* 약관동의 */
+#apply-container .apply-page .terms-title {
+  color: #333;
+  font-size: 40px;
+  font-family: "S-Core Dream";
+  font-weight: 300;
+  line-height: 125%;
+  margin-bottom: 50px;
+}
+
+#apply-container .apply-page .terms-title strong {
+  font-weight: 700;
+}
+
+#apply-container .apply-page .terms-box {
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 50px;
+  color: #333;
+  font-size: 18px;
+  font-family: Noto Sans KR;
+  font-weight: 300;
+  line-height: 180%;
+  width: 100%;
+}
+
+#apply-container .apply-page .terms-box span {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+#apply-container .apply-page .terms-box .tit {
+  font-weight: 500;
+  color: #02167c;
+  font-size: 22px;
+  line-height: 180%;
+}
+
+#apply-container .apply-page .input-checkbox {
+}
+
+#apply-container .apply-page .input-checkbox p {
+  color: #333333;
+  text-align: left;
+  font: 400 18px "Noto Sans KR", sans-serif;
+}
+
+#apply-container .apply-page .input-checkbox-wrap {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+  color: #333;
+  font-size: 18px;
+  font-family: "Noto Sans KR";
+  letter-spacing: -0.54px;
+}
+#apply-container .apply-page .input-checkbox-wrap input {
+  -ms-transform: scale(1.4); /* IE */
+  -moz-transform: scale(1.4); /* FF */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  -o-transform: scale(1.4); /* Opera */
+  transform: scale(1.4);
+}
+
+#apply-container .apply-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+#apply-container .apply-page .field-wrap {
+  width: 100%;
+}
+
+#apply-container .apply-page .field-wrap .field-title {
+  color: #333;
+  font-size: 28px;
+  font-family: "Noto Sans KR";
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -1.4px;
+}
+
+#apply-container .apply-page .field-wrap .field-title span {
+  font: 500 20px/125% "Noto Sans KR", sans-serif;
+}
+
+#apply-container .apply-page .field-wrap .field-title .ch {
+  color: #999999;
+}
+
+#apply-container .apply-page .field-wrap .field-title b {
+  color: #f85a57;
+  text-align: left;
+  font: 400 36px/125% "Noto Sans KR", sans-serif;
+  position: relative;
+}
+#apply-container .apply-page .field-wrap .field-input-text-wrap {
+  margin-left: 30px;
+}
+
+#apply-container .apply-page .field-wrap .field-text {
+  color: #f85a57;
+  font-size: 18px;
+  font-family: "Noto Sans KR";
+  line-height: 125%;
+  letter-spacing: -0.9px;
+  margin: 10px 0 30px 0;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .text-input {
+  color: #333;
+  font-size: 19px;
+  font-family: "Noto Sans KR";
+  line-height: 125%;
+  letter-spacing: -0.95px;
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  max-width: 800px;
+  width: 100%;
+  outline: none;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .error-input {
+  border: 2px solid #f85a57 !important;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .error-input::placeholder,
+#apply-container
+  .apply-page
+  .field-wrap
+  .input-wrap
+  .error-input
+  .text-input::placeholder {
+  color: #f85a57 !important;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .text-input::placeholder {
+  color: #bbb;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .address-btn {
+  color: #333333;
+  font: 400 20px "Noto Sans KR", sans-serif;
+  background: #eeeeee;
+  border-radius: 7px;
+  padding: 18px 45px;
+  display: flex;
+  justify-content: center;
+  align-items: centerF;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .address-input {
+  padding: 20px 30px;
+  max-width: 800px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  display: flex;
+  gap: 10px;
+}
+
+#apply-container .apply-page .field-wrap .detail-wrap {
+  margin-top: 10px;
+  border: 0;
+}
+
+#apply-container
+  .apply-page
+  .field-wrap
+  .input-wrap
+  .address-input
+  .text-input {
+  color: #bbb;
+  font-size: 19px;
+  font-family: "Noto Sans KR";
+  line-height: 125%;
+  letter-spacing: -0.95px;
+  padding: 0;
+  background: #fff;
+  width: calc(100% - 24px);
+  max-width: none;
+  outline: none;
+  border: none;
+}
+
+#apply-container .apply-page .field-wrap .address-input .text-input:focus,
+#apply-container .apply-page .field-wrap .address-input .text-input:active {
+  outline: none !important;
+  border: none !important;
+}
+
+#apply-container .apply-page .field-wrap .input-wrap .address-input .confirm {
+  width: 24px;
+  height: 24px;
+}
+
+#apply-container .apply-page .field-wrap .county-wrap {
+  display: flex;
+  border-bottom: 1px #ddd solid;
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  left: -30px;
+}
+#apply-container .apply-page .field-wrap .county-wrap:nth-last-child(1) {
+  border-bottom: none;
+}
+
+#apply-container .apply-page .field-wrap .county-wrap .county {
+  color: #333;
+  font-size: 22px;
+  font-family: "Noto Sans KR";
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: -1.1px;
+  padding: 0 80px 0 20px;
+}
+
+#apply-container .apply-page .field-wrap .county-wrap .area-wrap {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+#apply-container .apply-page .field-wrap .county-wrap .area {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+#apply-container .apply-page .field-wrap .county-wrap .area p {
+  color: #333;
+  font-size: 20px;
+  font-family: "Noto Sans KR";
+  line-height: 125%;
+  letter-spacing: -1px;
+}
+
+#apply-container .apply-page .field-wrap .county-wrap .area input {
+  width: 20px;
+  height: 20px;
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+  transform: scale(1.2);
+}
+
+#apply-container .apply-page .field-wrap .input-select {
+  position: relative;
+}
+
+#apply-container .apply-page .field-wrap .select-wrap {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  width: 400px;
+  color: #333;
+  font-size: 22px;
+  font-family: Noto Sans KR;
+  line-height: 125%;
+  letter-spacing: -1.1px;
+  margin-bottom: 10px;
+}
+
+#apply-container .apply-page .field-wrap .select-wrap img {
+  width: 17px;
+}
+
+#apply-container .apply-page .field-wrap .select-list-wrap {
+  position: absolute;
+  top: 66px;
+  display: none;
+  flex-wrap: wrap;
+  padding: 18px 0 !important;
+}
+
+#apply-container .apply-page .field-wrap .select-list-wrap > div {
+  width: 100%;
+  padding: 15px 30px;
+}
+
+#apply-container .apply-page .field-wrap .select-list-wrap > div:hover {
+  background: #eee;
+}
+
+#apply-container .apply-page .field-wrap .flex {
+  display: flex !important;
+}
+
+#apply-container .notice .terms-title {
+  color: #333;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -2px;
+  text-align: left;
+  width: 100%;
+}
+
+#apply-container .apply-page .submit-btn {
+  color: #fff;
+  font-size: 26px;
+  font-family: "S-Core Dream";
+  font-weight: 600;
+  line-height: 125%;
+  letter-spacing: -1.3px;
+  border-radius: 7px;
+  background: #02167c;
+  padding: 20px 152px;
+  margin-top: 150px;
+}
+
+.apply-completion {
+  height: 100%;
+  min-height: calc(100vh - 100px);
+}
+
+@media (max-width: 1480px) {
+  #apply-container .apply-page {
+    padding: 150px 20px 155px 20px;
+  }
+  #apply-container .apply-page .title {
+    font-size: 45px;
+    line-height: 110%;
+  }
+
+  #apply-container .apply-page .sub-title {
+    font-size: 25px;
+    line-height: 145%;
+  }
+  #apply-container .apply-page .terms-title {
+    font-size: 35px;
+  }
+  #apply-container .apply-page .terms-box {
+    font-size: 15px;
+  }
+  #apply-container .apply-page .field-wrap .field-title {
+    font-size: 24px;
+    line-height: 110%;
+  }
+
+  #apply-container .apply-page .field-wrap .field-text {
+    font-size: 15px;
+    line-height: 110%;
+    margin: 5px 0 25px 0;
+  }
+  #apply-container .apply-page .field-wrap .field-input-text-wrap {
+    margin-left: 24px;
+  }
+  #apply-container .apply-page .field-wrap .input-wrap .address-btn {
+    font: 400 20px "Noto Sans KR", sans-serif;
+    padding: 18px 34px;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .area p {
+    font-size: 18px;
+    line-height: 125%;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .county {
+    font-size: 20px;
+    line-height: 115%;
+  }
+  #apply-container .apply-page .field-wrap .select-wrap {
+    padding: 20px 30px;
+    font-size: 20px;
+    line-height: 125%;
+  }
+
+  #apply-container .apply-page .field-wrap .input-wrap .address-btn {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  #apply-container .apply-page .submit-btn {
+    font-size: 22px;
+    line-height: 120%;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .area-wrap {
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mo-br768 {
+    display: block !important;
+  }
+  #apply-container .apply-page {
+    padding: 100px 20px 105px 20px;
+  }
+  #apply-container .apply-page .title {
+    font-size: 35px;
+    line-height: 140%;
+  }
+  #apply-container .apply-page .sub-title {
+    font-size: 22px;
+    line-height: 145%;
+    word-break: keep-all;
+  }
+  #apply-container .apply-page .sub-title br {
+    display: none;
+  }
+
+  #apply-container .apply-page .car {
+    width: 50%;
+  }
+
+  #apply-container .apply-page .terms-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  #apply-container .apply-page .terms-box {
+    word-break: break-all;
+    padding: 35px;
+  }
+
+  #apply-container .apply-page .terms-box .tit {
+    font-size: 20px;
+  }
+
+  #apply-container .apply-input {
+    gap: 80px;
+  }
+
+  #apply-container .apply-page .field-wrap .field-title {
+    font-size: 22px;
+    line-height: 110%;
+  }
+  #apply-container .apply-page .field-wrap .field-text {
+    font-size: 13px;
+  }
+
+  #apply-container .apply-page .field-wrap .input-wrap .text-input {
+    font-size: 18px;
+    line-height: 125%;
+    padding: 15px 20px;
+  }
+
+  #apply-container .apply-page .field-wrap .field-input-text-wrap {
+    margin-left: 20px;
+  }
+
+  #apply-container .apply-page .field-wrap .input-wrap .address-btn {
+    font: 400 18px "Noto Sans KR", sans-serif;
+    padding: 20px 24px;
+    white-space: nowrap;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .county {
+    width: 100%;
+    padding: 13px 20px;
+    text-align: center;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap {
+    flex-wrap: wrap;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .area-wrap {
+    flex-wrap: wrap;
+    gap: 20px 25px;
+    padding: 15px 20px;
+  }
+
+  #apply-container .apply-page .field-wrap .county-wrap .area {
+    gap: 15px;
+  }
+
+  #apply-container .apply-page .field-wrap .select-wrap {
+    width: 420px;
+    padding: 18px 25px;
+    font-size: 18px;
+  }
+
+  #apply-container .apply-page .submit-btn {
+    font-size: 20px;
+    line-height: 120%;
+  }
+
+  #apply-container
+    .apply-page
+    .field-wrap
+    .input-wrap
+    .address-input
+    .text-input {
+    font-size: 18px;
+  }
+
+  #apply-container .apply-page .field-wrap .input-wrap .address-input {
+    padding: 15px 20px;
+  }
+
+  #apply-container .apply-page .field-wrap .input-wrap .address-btn {
+    padding: 16px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  #apply-container .apply-page .field-wrap .select-wrap {
+    width: 100%;
+  }
+
+  #apply-header img {
+    padding: 23px 0;
+  }
+
+  #apply-container {
+    top: 100px;
+    position: relative;
+  }
+  #apply-container .apply-page .title {
+    font-size: 29px;
+    line-height: 140%;
+  }
+
+  #apply-container .apply-page .sub-title {
+    font-size: 18px;
+  }
+  #apply-container .apply-page .submit-btn {
+    font-size: 18px;
+    white-space: nowrap;
+    margin-top: 100px;
+    padding: 17px 152px;
+  }
+  #apply-container .apply-page .input-checkbox-wrap {
+    font-size: 16px;
+  }
+}
