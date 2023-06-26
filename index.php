@@ -154,42 +154,164 @@ while ($popup = $popup_stt->fetch()) {
     </div>
 </div>
 
+<div class="area3">
+    <img class="banner" src="img/main/i.M.png">
+
+    <div class="geni-wrap">
+        <img class="people" src="img/main/people.png">
+
+        <div class="text-wrap">
+            <img class="geni-title" src="img/main/geni.png">
+            <p class="sub-title1">언제 어디서나 <br class="mobile" />쾌적하고 안전하게!</p>
+            <p class="sub-title2">
+                i.M 만의 체계적인 교육과 지원을 받으며,<br />
+                고객에게 프라이빗한 이동 서비스를 제공하는<br />
+                <strong>프리미엄 정규직 드라이버</strong>입니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="three-keywords">
+        <div class="keyword">
+            <p class="title">안전</p>
+            <img class="geni-title" src="img/main/safety.png">
+            <p class="text">
+                고객을 목적지까지<br />
+                안전하게 모시는 것이<br />
+                가장 중요합니다.
+            </p>
+        </div>
+        <div class="keyword">
+            <p class="title">정숙</p>
+            <img class="geni-title" src="img/main/silent.png">
+            <p class="text">
+                고객이 목적지까지<br />
+                프라이빗한 시간을<br />
+                가질 수 있도록 정숙합니다.
+            </p>
+        </div>
+        <div class="keyword">
+            <p class="title">청결</p>
+            <img class="geni-title" src="img/main/clean.png">
+            <p class="text">
+                쾌적한 차량 내부와<br />
+                깔끔한 드라이버의 모습으로<br />
+                고객을 맞이합니다.
+            </p>
+        </div>
+    </div>
 
 
-<script type="text/javascript">
-    AOS.init();
+    <div class="click-btn">
+        <p class="click"># 일</p>
+        <p># 급여</p>
+        <p># 복지</p>
+        <p># 비전</p>
+    </div>
+
+    <div class="service-wrap">
+        <p class="title">
+            지니는 앱 호출, 일반 탑승, 예약 운행 등 다양한 형태로 고객을 만나고,<br />
+            고객이 원하는 목적지까지 <span>안전하고 편안한 이동 서비스를 제공</span>합니다.
+        </p>
+
+        <div class="service">
+            <div class="service-item">
+                <img class="" src="img/main/service1.png">
+                <p class="sub-tit1">APP Service</p>
+                <p class="tit">앱 호출 영업</p>
+                <p class="sub-tit2">AI 자동배차 시스템</p>
+            </div>
+            <div class="service-item">
+                <img class="" src="img/main/service2.png">
+                <p class="sub-tit1">On the Road</p>
+                <p class="tit">배회 영업</p>
+                <p class="sub-tit2">택시표시등 설치로<br />
+                    길에서 손님 탑승 가능</p>
+            </div>
+            <div class="service-item">
+                <img class="" src="img/main/service3.png">
+                <p class="sub-tit1">Reservation</p>
+                <p class="tit">예약 영업</p>
+                <p class="sub-tit2">공항, 시간대절 등</p>
+            </div>
+        </div>
+
+        <div class="work-info">
+            <div class="work">
+                <p class="title">근무 형태</p>
+                <div class="text-wrap">
+                    <p class="text">
+                        <strong>im26</strong> (주 6일제 / 월 26일)
+                        <br />
+                        <strong>im22</strong> (주 5일제 / 월 22일)
+                    </p>
+                </div>
+            </div>
+
+            <div class="work">
+                <p class="title">근무 시간</p>
+                <div class="text-wrap">
+                    <ul class="text">
+                        <li>
+                            주간 or 야간 근무 중 선택 가능
+                        </li>
+                        <li>
+                            일 10시간 운행<br />
+                            (근무 6시간 40분, 휴게 3시간 20분)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="work">
+                <p class="title">임시 택시운전자격 제도</p>
+                <div class="text-wrap">
+                    <p class="text">
+                        택시운전자격이 없어도<Br />
+                        1종 운전면허만 있다면<Br />
+                        3개월간 운행 가능한<Br />
+                        임시 택시운전자격 부여
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        AOS.init();
 
 
-    $(document).ready(function () {
-        var scrollTop = $(window).scrollTop();
-        if (scrollTop == 0) {
-            $("#header-logo").attr("src", "img/main/logo-white.png")
-            $(".floating-header").removeClass("fixed");
-        } else {
-            $("#header-logo").attr("src", "img/main/logo-blue.png")
-            $(".floating-header").addClass("fixed");
+        $(document).ready(function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop == 0) {
+                $("#header-logo").attr("src", "img/main/logo-white.png")
+                $(".floating-header").removeClass("fixed");
+            } else {
+                $("#header-logo").attr("src", "img/main/logo-blue.png")
+                $(".floating-header").addClass("fixed");
+            }
+        });
+        document.addEventListener('scroll', function () {
+            detectTop();
+        });
+        function detectTop() {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop == 0) {
+                $("#header-logo").attr("src", "img/main/logo-white.png")
+                $(".floating-header").removeClass("fixed");
+                return true;
+            } else {
+                $("#header-logo").attr("src", "img/main/logo-blue.png")
+                $(".floating-header").addClass("fixed");
+                return false;
+            }
         }
-    });
-    document.addEventListener('scroll', function() {
-        detectTop();
-    });
-    function detectTop() {
-        var scrollTop = $(window).scrollTop();
-        if (scrollTop == 0) {
-            $("#header-logo").attr("src", "img/main/logo-white.png")
-            $(".floating-header").removeClass("fixed");
-            return true;
-        } else {
-            $("#header-logo").attr("src", "img/main/logo-blue.png")
-            $(".floating-header").addClass("fixed");
-            return false;
-        }
-    }
-</script>
+    </script>
 
 
 
 
-<?php
-include_once('tale.php');
-?>
+    <?php
+    include_once('tale.php');
+    ?>
