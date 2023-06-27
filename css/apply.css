@@ -270,7 +270,7 @@
   .input-wrap
   .address-input
   .text-input {
-  color: #bbb;
+  color: #333;
   font-size: 19px;
   font-family: "Noto Sans KR";
   line-height: 125%;
@@ -281,6 +281,16 @@
   max-width: none;
   outline: none;
   border: none;
+  box-shadow: none;
+}
+
+#apply-container
+  .apply-page
+  .field-wrap
+  .input-wrap
+  .address-input
+  .text-input::placeholder {
+  color: #bbb;
 }
 
 #apply-container .apply-page .field-wrap .address-input .text-input:focus,
@@ -377,6 +387,22 @@
   display: none;
   flex-wrap: wrap;
   padding: 18px 0 !important;
+}
+
+#apply-container .apply-page .field-wrap .select-wrap input,
+#apply-container .apply-page .field-wrap .select-wrap input:focus,
+#apply-container .apply-page .field-wrap .select-wrap input:target,
+#apply-container .apply-page .field-wrap .select-wrap input:active {
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  transition: none;
+  background: #fff;
+}
+
+#apply-container .apply-page .list-item {
+  width: 100%;
+  padding: 15px 30px;
 }
 
 #apply-container .apply-page .field-wrap .select-list-wrap > div {

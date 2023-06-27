@@ -26,7 +26,7 @@ $site = $site_info_stt -> fetch();
     <meta property="og:image" content="" />
     <title><?=$site[1]?></title>
 
-    <link rel="stylesheet" type="text/css" href="css/common.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/common.css" rel="stylesheet" /> -->
 
     <!-- CSS only -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
