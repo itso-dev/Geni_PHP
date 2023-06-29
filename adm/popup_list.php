@@ -37,7 +37,7 @@ $admin_stt->execute();
                     ?>
                     <tr class="text-center">
                         <td>
-                            <?= $list_row['id'] ?>
+                            <?= $is_data ?>
                         </td>
                         <td>
                             <?= $list_row['popup_name'] ?>

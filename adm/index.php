@@ -38,23 +38,23 @@
     $today_waiting = $today_waiting_stt -> fetch();
 
     // 전체 진행자 수
-    $total_processing_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%진행%'";
+    $total_processing_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%면접 예정%'";
     $total_processing_stt=$db_conn->prepare($total_processing_sql);
     $total_processing_stt->execute();
     $total_processing = $total_processing_stt -> fetch();
     // 오늘 진행자 수
-    $today_processing_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%진행%' AND DATE(write_date) = DATE(NOW())";
+    $today_processing_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%면접 예정%' AND DATE(write_date) = DATE(NOW())";
     $today_processing_stt=$db_conn->prepare($today_processing_sql);
     $today_processing_stt->execute();
     $today_processing = $today_processing_stt -> fetch();
 
     // 전체 완료자 수
-    $total_finish_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%완료%'";
+    $total_finish_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%최종 합격%'";
     $total_finish_stt=$db_conn->prepare($total_finish_sql);
     $total_finish_stt->execute();
     $total_finish = $total_finish_stt -> fetch();
     // 오늘 완료자 수
-    $today_finish_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%완료%' AND DATE(write_date) = DATE(NOW())";
+    $today_finish_sql = "SELECT COUNT(id) FROM contact_tbl where result_status like '%최종 합격%' AND DATE(write_date) = DATE(NOW())";
     $today_finish_stt=$db_conn->prepare($today_finish_sql);
     $today_finish_stt->execute();
     $today_finish = $today_finish_stt -> fetch();
@@ -118,19 +118,19 @@
                        <p class="cnt"><?=number_format($total_view[0])?></p>
                    </div>
                    <div class="item">
-                       <p class="name">문의 건수</p>
+                       <p class="name">지원자</p>
                        <p class="cnt"><?=number_format($total_contact[0])?></p>
                    </div>
                    <div class="item">
-                       <p class="name">상담 대기자 수</p>
+                       <p class="name">면접 대기자</p>
                        <p class="cnt"><?=number_format($total_waiting[0])?></p>
                    </div>
                    <div class="item">
-                       <p class="name">상담 진행 수</p>
+                       <p class="name">면접자</p>
                        <p class="cnt"><?=number_format($total_processing[0])?></p>
                    </div>
                    <div class="item">
-                       <p class="name">상담 완료 수<p>
+                       <p class="name">합격자<p>
                        <p class="cnt"><?=number_format($total_finish[0])?></p>
                    </div>
                </div>
@@ -143,26 +143,26 @@
                         <p class="cnt"><?=number_format($today_view[0])?></p>
                     </div>
                     <div class="item">
-                        <p class="name">문의 건수</p>
+                        <p class="name">지원자</p>
                         <p class="cnt"><?=number_format($today_contact[0])?></p>
                     </div>
                     <div class="item">
-                        <p class="name">상담 대기자 수</p>
+                        <p class="name">면접 대기자</p>
                         <p class="cnt"><?=number_format($today_waiting[0])?></p>
                     </div>
                     <div class="item">
-                        <p class="name">상담 진행자 수</p>
+                        <p class="name">면접자</p>
                         <p class="cnt"><?=number_format($today_processing[0])?></p>
                     </div>
                     <div class="item">
-                        <p class="name">상담 완료 수<p>
+                        <p class="name">합격자<p>
                         <p class="cnt"><?=number_format($today_finish[0])?></p>
                     </div>
                 </div>
             </div>
             <div class="content-wrap">
                 <p class="tit">선택 조회</p>
-                <form name="search_form" id="search_form" method="post" action="home.php?menu=0">
+                <form name="search_form" id="search_form" method="post" action="index.php?menu=0">
                     <div class="choice-wrap">
                         <div class="item">
                             <p>시작 날짜</p>
@@ -186,19 +186,19 @@
                             <p class="cnt"><?=number_format($search_view[0])?></p>
                         </div>
                         <div class="item">
-                            <p class="name">문의 건수</p>
+                            <p class="name">지원자</p>
                             <p class="cnt"><?=number_format($search_contact[0])?></p>
                         </div>
                         <div class="item">
-                            <p class="name">상담 대기자 수</p>
+                            <p class="name">면접 대기자</p>
                             <p class="cnt"><?=number_format($search_waiting[0])?></p>
                         </div>
                         <div class="item">
-                            <p class="name">상담 진행자 수</p>
+                            <p class="name">면접자</p>
                             <p class="cnt"><?=number_format($search_processing[0])?></p>
                         </div>
                             <div class="item">
-                                <p class="name">상담 완료 수<p>
+                                <p class="name">합격자<p>
                                 <p class="cnt"><?=number_format($search_finish[0])?></p>
                             </div>
                     </div>
@@ -212,7 +212,7 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">챗봇 서비스</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="return false;" readonly>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked onclick="return false;" readonly>
                     <label class="form-check-label" for="flexSwitchCheckDefault">알림 문자 서비스</label>
                 </div>
                 <div class="form-check form-switch">

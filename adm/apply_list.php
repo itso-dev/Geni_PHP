@@ -188,11 +188,12 @@
                             <select class="custom-select custom-select-sm rounded-0" name="sch_c_result">
                                 <option value="" <? if($sch_c_result == "" || $sch_c_result == "전체") echo "selected" ?> >전체</option>
                                 <option value="대기" <? if($sch_c_result == "대기") echo "selected" ?> >대기</option>
-                                <option value="잔행" <? if($sch_c_result == "잔행") echo "selected" ?> >잔행</option>
-                                <option value="부재" <? if($sch_c_result == "부재") echo "selected" ?> >부재</option>
-                                <option value="재통화" <? if($sch_c_result == "재통화") echo "selected" ?> >재통화</option>
-                                <option value="거절" <? if($sch_c_result == "거절") echo "selected" ?> >거절</option>
-                                <option value="완료" <? if($sch_c_result == "완료") echo "selected" ?> >완료</option>
+                                <option value="지원 취소" <? if($sch_c_result == "지원 취소") echo "selected" ?> >지원 취소</option>
+                                <option value="면접 예정" <? if($sch_c_result == "면접 예정") echo "selected" ?> >면접 예정</option>
+                                <option value="1차 합격" <? if($sch_c_result == "1차 합격") echo "selected" ?> >1차 합격</option>
+                                <option value="최종 합격" <? if($sch_c_result == "최종 합격") echo "selected" ?> >최종 합격</option>
+                                <option value="불합격" <? if($sch_c_result == "불합격") echo "selected" ?> >불합격</option>
+                                <option value="블랙" <? if($sch_c_result == "블랙") echo "selected" ?> >블랙</option>
                             </select>
                         </div>
                         <div class="col-12 col-md-2 py-md-0 my-1 my-md-0 px-1 position-relative">
@@ -216,13 +217,14 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 70px;"><input type="checkbox" class="checkbox-controller" onclick="check_all(this)"></th>
-                                    <th scope="col" style="cursor: pointer; width: 182px;" class="text-left" onclick="sortColumn('sort_date');">생성일</th>
-                                    <th scope="col" style="width:102px;cursor: pointer;" onclick="sortColumn('sort_name');">이름</th>
+                                    <th scope="col" style="cursor: pointer; width: 182px;" class="text-left" onclick="sortColumn('sort_date');">지원일</th>
+                                    <th scope="col" style="width:102px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자 명</th>
                                     <th scope="col" style="width: 192px;">연락처</th>
-                                    <th scope="col" style="width: 192px;">창업희망지역</th>
-                                    <th scope="col" style="width: 192px;">문의 내용</th>
-                                    <th scope="col" style="width: 110px;">상담내역</th>
-                                    <!-- <th scope="col" style="width: 110px;">상담로그</th> -->
+                                    <th scope="col" style="width: 192px;">출생년도</th>
+                                    <th scope="col" style="width: 300px;">지원자 거주지</th>
+                                    <th scope="col" style="width: 110px;">희망 근무지</th>
+                                    <th scope="col" style="width: 250px;">추천인 성명</th>
+                                     <th scope="col" style="width: 110px;">상담로그</th>
                                     <th scope="col" style="width: 159px;">결과</th>
                                     <th scope="col" style="width: 159px;">담당자</th>
                                     <th scope="col" style="width: 250px;">아이피</th>
@@ -243,10 +245,11 @@
                                     <td><?=$list_row['write_date']?></td>
                                     <td><?=$list_row['name']?></td>
                                     <td><?=$list_row['phone']?></td>
+                                    <td><?=$list_row['birth_date']?></td>
+                                    <td><?=$list_row['address']?></td>
                                     <td><?=$list_row['location']?></td>
-                                    <td>
-                                        <button type="button" class="button button4" style="width: 100px;" onclick="openContactDescModal(<?= $list_row['id'] ?>);">문의 내용</button>
-                                    </td>
+                                    <td><?=$list_row['recommender']?> / <?=$list_row['recommender_name']?></td>
+
                                     <td>
                                         <button type="button" class="button button4" style="width: 90px;" onclick="openCounselModal(<?= $list_row['id'] ?>);">상담내역</button>
                                     </td>
@@ -256,11 +259,13 @@
                                     <td>
                                         <select class="custom-select custom-select-sm" onchange="changeResultStatus('<?=$list_row['id']?>', this.value)">
                                             <option value="대기" <? if($list_row['result_status'] == "대기") echo "selected"?>>대기</option>
-                                            <option value="진행" <? if($list_row['result_status'] == "진행") echo "selected"?>>진행</option>
-                                            <option value="부재" <? if($list_row['result_status'] == "부재") echo "selected"?>>부재</option>
-                                            <option value="재통화" <? if($list_row['result_status'] == "재통화") echo "selected"?>>재통화</option>
-                                            <option value="거절" <? if($list_row['result_status'] == "거절") echo "selected"?>>거절</option>
-                                            <option value="완료" <? if($list_row['result_status'] == "완료") echo "selected"?>>완료</option>
+                                            <option value="지원 취소" <? if($list_row['result_status'] == "지원 취소") echo "selected"?>>지원 취소</option>
+                                            <option value="면접 예정" <? if($list_row['result_status'] == "면접 예정") echo "selected"?>>면접 예정</option>
+                                            <option value="면접 불참" <? if($list_row['result_status'] == "면접 불참") echo "selected"?>>면접 불참</option>
+                                            <option value="1차 합격" <? if($list_row['result_status'] == "1차 합격") echo "selected"?>>1차 합격</option>
+                                            <option value="최종 합격" <? if($list_row['result_status'] == "최종 합격") echo "selected"?>>최종 합격</option>
+                                            <option value="불합격" <? if($list_row['result_status'] == "불합격") echo "selected"?>>불합격</option>
+                                            <option value="블랙" <? if($list_row['result_status'] == "블랙") echo "selected"?>>블랙</option>
                                         </select>
                                     </td>
                                     <td>

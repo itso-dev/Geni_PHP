@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 function mysqlConnect(){
     $db = null;
-    $dsn = "mysql:host=localhost;port=3306;dbname=solution;charset=utf8";
+    $dsn = "mysql:host=localhost;port=3306;dbname=geni;charset=utf8";
     try {
         $db = new PDO($dsn, "root", "root");
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

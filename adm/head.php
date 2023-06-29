@@ -12,7 +12,7 @@ session_start();
 // 로그인 세션 체크
 //print_r($_SESSION);
 
-include_once($_SERVER["DOCUMENT_ROOT"].'/DB_Solution/db/dbconfig.php');
+include_once($_SERVER["DOCUMENT_ROOT"].'/geni/db/dbconfig.php');
 
 //사이트 정보 쿼리
 $site_info_sql = "select * from site_setting_tbl";

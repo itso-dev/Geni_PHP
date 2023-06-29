@@ -4,6 +4,29 @@ include_once('head.php');
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+$secretKey = "6Lf0d90mAAAAALdfOB6-x61SMRrm8AlEvzUwMtK-";
+$url = "https://www.google.com/recaptcha/api/siteverify";
+$post = array(
+    "secret" => $secretKey,
+    "response" => $_POST['g-recaptcha-response'],
+    "remoteip" => $_SERVER['REMOTE_ADDR']
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_HTTP_VERSION,CURL_HTTP_VERSION_1_1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$result = curl_exec($ch);
+curl_close ($ch);
+$rst = json_decode($result, true);
+
+if($rst['success'] != 1){
+    alert("비정상적인 접근입니다.");
+    exit;
+}
+
 $posted = date("Y-m-d H:i:s");
 $name = $_POST["name"];
 $phone = $_POST["phone"];

@@ -27,7 +27,7 @@
                                     <th>이름</th>
                                     <th class="text-center">연락처</th>
                                     <th class="text-center">결과</th>
-                                    <th class="text-center">생성일</th>
+                                    <th class="text-center">지원일</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,8 +35,8 @@
                                     <td class="modal_id text-center" id="modal_id"><?= $row[0] ?></td>
                                     <td class="modal_name" id="modal_name"><?= $row[1] ?></td>
                                     <td class="modal_subject text-center" id="modal_subject"><?= $row[2] ?></td>
-                                    <td class="modal_result text-center" id="modal_result"><?= $row[6] ?></td>
-                                    <td class="modal_datetime text-center" id="modal_datetime"><?= $row[10] ?></td>
+                                    <td class="modal_result text-center" id="modal_result"><?= $row['result_status'] ?></td>
+                                    <td class="modal_datetime text-center" id="modal_datetime"><?= $row['write_date'] ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -46,15 +46,14 @@
                         <div class="col-6">
                             <label for="modal_counsel_content_result">결과</label>
                             <select class="custom-select modal_counsel_result" id="modal_counsel_result" name="result_status">
-                                <option value="대기" <? if($row[6] == "대기") echo "selected"?>>대기</option>
-                                <option value="A등급" <? if($row[6] == "A등급") echo "selected"?>>A등급</option>
-                                <option value="B등급" <? if($row[6] == "B등급") echo "selected"?>>B등급</option>
-                                <option value="부재" <? if($row[6] == "부재") echo "selected"?>>부재</option>
-                                <option value="결번" <? if($row[6] == "결번") echo "selected"?>>결번</option>
-                                <option value="재통화" <? if($row[6] == "재통화") echo "selected"?>>재통화</option>
-                                <option value="결제" <? if($row[6] == "결제") echo "selected"?>>결제</option>
-                                <option value="블랙" <? if($row[6] == "블랙") echo "selected"?>>블랙</option>
-                                <option value="거절" <? if($row[6] == "거절") echo "selected"?>>거절</option>
+                                <option value="대기" <? if($row['result_status'] == "대기") echo "selected"?>>대기</option>
+                                <option value="지원 취소" <? if($row['result_status'] == "지원 취소") echo "selected"?>>지원 취소</option>
+                                <option value="면접 예정" <? if($row['result_status'] == "면접 예정") echo "selected"?>>면접 예정</option>
+                                <option value="면접 불참" <? if($row['result_status'] == "면접 불참") echo "selected"?>>면접 불참</option>
+                                <option value="1차 합격" <? if($row['result_status'] == "1차 합격") echo "selected"?>>1차 합격</option>
+                                <option value="최종 합격" <? if($row['result_status'] == "최종 합격") echo "selected"?>>최종 합격</option>
+                                <option value="불합격" <? if($row['result_status'] == "불합격") echo "selected"?>>불합격</option>
+                                <option value="블랙" <? if($row['result_status'] == "블랙") echo "selected"?>>블랙</option>
                             </select>
                         </div>
                     </div>
@@ -62,7 +61,7 @@
                         <label for="counsel_content_body" class="col-form-label">상담내용</label>
                     </div>
                     <div>
-                        <textarea name="contact_desc"><?= $row[5] ?></textarea>
+                        <textarea name="counsel_text"><?= $row['counsel_text'] ?></textarea>
                     </div>
                     <div>
                         <input type="submit" class="btn btn-primary" value="저장"></button>

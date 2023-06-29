@@ -584,7 +584,7 @@
   #apply-container .apply-page .field-wrap .county-wrap .county {
     width: 100%;
     padding: 13px 20px;
-    text-align: center;
+    text-align: left;
   }
 
   #apply-container .apply-page .field-wrap .county-wrap {

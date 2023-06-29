@@ -32,12 +32,12 @@ if ( !$adm_login ) {
 <div class="gnb-container">
     <div class="sidebar">
         <div class="brand-wrapper">
-            <a class="brand" href="apply_list.php">미디어플래닛(이름)</a>
+            <a class="brand" href="apply_list.php">i.M 지니</a>
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li <?php if($menu == 0  || $menu == "") echo "class='active'" ?> >
-                    <a href="home.php?menu=0">
+                    <a href="index.php?menu=0">
                         <i class="fas fa-chart-bar"></i>
                         <p>로그관리</p>
                     </a>
@@ -46,6 +46,12 @@ if ( !$adm_login ) {
                     <a href="apply_list.php?menu=1">
                         <i class="far fa-address-book"></i>
                         <p>전체보기</p>
+                    </a>
+                </li>
+                <li <?php if($menu == 11) echo "class='active'" ?> >
+                    <a href="locate_list.php?menu=11">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>지점 관리</p>
                     </a>
                 </li>
                 <li <?php if($menu == 2) echo "class='active'" ?> >
@@ -66,13 +72,8 @@ if ( !$adm_login ) {
                         <p>담당자 설정</p>
                     </a>
                 </li>
+
                 <li class="line"></li>
-                <li <?php if($menu == 5) echo "class='active'" ?> >
-                    <a href="chat_bot_service.php?menu=10" class="pay-menu">
-                        <i class="far fa-comment-alt"></i>
-                        <p>챗봇 설정</p>
-                    </a>
-                </li>
                 <li <?php if($menu == 6) echo "class='active'" ?> >
                     <a href="sms_service.php?menu=10" class="pay-menu">
                         <i class="far fa-bell"></i>

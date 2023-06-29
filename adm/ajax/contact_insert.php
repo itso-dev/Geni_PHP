@@ -2,13 +2,13 @@
     include_once('../head.php');
 
     $id = $_POST['id'];
-    $contact_desc = $_POST['contact_desc'];
+    $counsel_text = $_POST['counsel_text'];
     $result_status = $_POST['result_status'];
 
 
     $modify_sql = "update contact_tbl
     set 
-    contact_desc = '$contact_desc',
+    counsel_text = '$counsel_text',
     result_status = '$result_status'
     where
     id = $id";

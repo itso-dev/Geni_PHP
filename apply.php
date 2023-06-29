@@ -29,6 +29,7 @@ function get_client_ip()
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf0d90mAAAAALdfOB6-x61SMRrm8AlEvzUwMtK-"></script>
 
 <script>
     let openSelect = false;
@@ -349,12 +350,25 @@ function get_client_ip()
                         <p>동의하지 않습니다.</p>
                     </label>
 
-                    <input class="submit-btn" type="submit" value="제출하기" onclick="sendTo();" />
+                    <input class="submit-btn" type="submit" value="제출하기" class="g-recaptcha" data-sitekey="6Lf0d90mAAAAALdfOB6-x61SMRrm8AlEvzUwMtK-" data-callback='frmSubmit' data-action='submit'  />
                 </article>
             </form>
         </section>
     </div>
 
+    <script>
+        function frmSubmit(){
+            if(!$("input[name=name]").val()) {
+                alert("이름을 입력해주세요");
+                return false;
+            }
+            if(!$("input[name=phone]").val()){
+                alert("상담하시려는 분의 연락처를 입력해주세요");
+                return false;
+            }
+            document.contact_form.submit()
+        }
+    </script>
 
     <?php
     include_once('tale.php');

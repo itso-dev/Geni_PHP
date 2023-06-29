@@ -30,12 +30,13 @@ $phpExcel = new PHPExcel();
 $phpExcel->setActiveSheetIndex(0);
 $phpExcel->getActiveSheet()
     ->setCellValue("A1", "생성일")
-    ->setCellValue("B1", "이름")
+    ->setCellValue("B1", "지원자 명")
     ->setCellValue("C1", "연락처")
-    ->setCellValue("D1", "창업희망지역")
-    ->setCellValue("E1", "문의내용")
-    ->setCellValue("F1", "결과")
-    ->setCellValue("G1", "아이피");
+    ->setCellValue("D1", "출생년도")
+    ->setCellValue("E1", "지원자 거주지")
+    ->setCellValue("F1", "희망 근무지")
+    ->setCellValue("G1", "추천인 성명")
+    ->setCellValue("H1", "아이피");
 
 $line = 2;
 while($list_row=$list_stt->fetch()) {
@@ -43,15 +44,16 @@ while($list_row=$list_stt->fetch()) {
         ->setCellValue("A".$line, $list_row['write_date'])
         ->setCellValue("B".$line, $list_row['name'])
         ->setCellValue("C".$line, $list_row['phone'])
-        ->setCellValue("D".$line, $list_row['location'])
-        ->setCellValue("E".$line,$list_row['contact_desc'])
-        ->setCellValue("F".$line,$list_row['result_status'])
-        ->setCellValue("G".$line,$list_row['writer_ip']);
+        ->setCellValue("D".$line, $list_row['birth_date'])
+        ->setCellValue("E".$line,$list_row['address'])
+        ->setCellValue("F".$line,$list_row['location'])
+        ->setCellValue("G".$line,$list_row['recommender']." / " .$list_row['recommender_name'])
+        ->setCellValue("H".$line,$list_row['writer_ip']);
     $line++;
 }
 
 header('Content-Type: application/vnd.ms-excel');
-header( "Content-Disposition: attachment; filename = 문의ㅠ_".date('Y-m-d H:i:s') .".xls" );     //filename = 저장되는 파일명을 설정합니다.
+header( "Content-Disposition: attachment; filename = i.M지니_".date('Y-m-d H:i:s') .".xls" );     //filename = 저장되는 파일명을 설정합니다.
 header('Cache-Control: max-age=0');
 
 $objWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel5');
