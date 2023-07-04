@@ -238,15 +238,17 @@
   color: #bbb;
 }
 
-#apply-container .apply-page .field-wrap .input-wrap .address-btn {
+#apply-container .apply-page .field-wrap .address-btn {
   color: #333333;
   font: 400 20px "Noto Sans KR", sans-serif;
   background: #eeeeee;
   border-radius: 7px;
-  padding: 18px 45px;
+  padding: 16px 29px;
   display: flex;
   justify-content: center;
-  align-items: centerF;
+  align-items: center;
+  max-width: 175px;
+  margin-bottom: 20px;
 }
 
 #apply-container .apply-page .field-wrap .input-wrap .address-input {
@@ -439,6 +441,7 @@
   background: #02167c;
   padding: 20px 152px;
   margin-top: 150px;
+  cursor: pointer;
 }
 
 .apply-completion {
@@ -628,6 +631,17 @@
   #apply-container .apply-page .field-wrap .input-wrap .address-btn {
     padding: 16px 24px;
   }
+  #apply-container .apply-page .terms-title{
+    font-size: 23px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  #apply-container .apply-page .terms-box{
+    padding: 15px 20px;
+    height: 450px;
+    overflow-y: scroll;
+  }
 }
 
 @media (max-width: 480px) {
@@ -659,5 +673,17 @@
   }
   #apply-container .apply-page .input-checkbox-wrap {
     font-size: 16px;
+  }
+  #apply-container .apply-page .field-wrap .address-btn{
+    color: #333333;
+    font: 400 15px "Noto Sans KR", sans-serif;
+    background: #eeeeee;
+    border-radius: 7px;
+    padding: 11px 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 123px;
+    margin-bottom: 20px;
   }
 }

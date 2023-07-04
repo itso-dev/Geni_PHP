@@ -27,7 +27,7 @@ include_once('head.php');
                     채용 담당자가 근무일 기준 3일 이내로 면접 진행 관련해서 안내를 드릴 예정입니다.<br /><br class="mo-br768" />
                     감사합니다.
                 </p>
-                <div class="submit-btn">
+                <div class="submit-btn" onclick="location.href='index.php'">
                     완료
                 </div>
                 <img src="img/apply/im.png" class="car" />

@@ -25,6 +25,8 @@ $db_conn->prepare($view_sql)->execute(
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-W6QL6FV
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -134,11 +136,35 @@ while ($popup = $popup_stt->fetch()) {
 </div>
 <div class="area1" data-parallax="scroll" data-image-src="img/main/main-bg.png">
     <img class="logo" src="img/main/logo-white.png">
-    <p class="small">이동시장이 바뀌고 있다.</p>
-    <p class="big">이제 당신이 움직일 타이밍!</p>
+    <div class="text-wrap">
+        <p id="type-a" class="small"></p>
+        <p id="type-b" class="big"></p>
+    </div>
     <span class="tag"># 정규직 드라이버 ‘지니’ 채용 중</span>
     <img class="wave" src="img/main/wave.png">
 </div>
+<script>
+    var options1 = {
+        strings: ['이동시장이 바뀌고 있다.'],
+        typeSpeed: 50,
+        fadeOut: false,
+        smartBackspace: true,
+        cursorChar: '_',
+    };
+    var options = {
+        strings: ['이제 당신이 움직일 타이밍!'],
+        typeSpeed: 50,
+        fadeOut: false,
+        smartBackspace: true,
+        cursorChar: '_',
+        startDelay: 1500,
+
+    };
+
+    var typed = new Typed('#type-a', options1);
+    var typed = new Typed('#type-b', options);
+
+</script>
 <div class="area2">
     <div class="row">
         <div class="text">
@@ -167,7 +193,10 @@ while ($popup = $popup_stt->fetch()) {
         <img class="people" src="img/main/people.png">
 
         <div class="text-wrap">
-            <img class="geni-title" src="img/main/geni.png">
+            <div class="geni-title-wrap">
+                <img class="geni-title" src="img/main/geni.png">
+                <img class="geni" src="img/main/geni2.png"  data-aos-delay="300" data-aos-duration="1000" data-aos="zoom-in-up">
+            </div>
             <p class="sub-title1">언제 어디서나 <br class="mobile" />쾌적하고 안전하게!</p>
             <p class="sub-title2">
                 i.M 만의 체계적인 교육과 지원을 받으며,<br />
@@ -178,7 +207,7 @@ while ($popup = $popup_stt->fetch()) {
     </div>
 
     <div class="three-keywords">
-        <div class="keyword">
+        <div class="keyword" data-aos="flip-right" data-aos-duration="1500">
             <p class="title">안전</p>
             <img class="geni-title" src="img/main/safety.png">
             <p class="text">
@@ -187,7 +216,7 @@ while ($popup = $popup_stt->fetch()) {
                 가장 중요합니다.
             </p>
         </div>
-        <div class="keyword">
+        <div class="keyword" data-aos="flip-right" data-aos-duration="1500" data-aos-delay="300">
             <p class="title">정숙</p>
             <img class="geni-title" src="img/main/silent.png">
             <p class="text">
@@ -196,7 +225,7 @@ while ($popup = $popup_stt->fetch()) {
                 가질 수 있도록 정숙합니다.
             </p>
         </div>
-        <div class="keyword">
+        <div class="keyword" data-aos="flip-right" data-aos-duration="1500" data-aos-delay="600">
             <p class="title">청결</p>
             <img class="geni-title" src="img/main/clean.png">
             <p class="text">
@@ -222,7 +251,7 @@ while ($popup = $popup_stt->fetch()) {
                     지니는 앱 호출, 일반 탑승, 예약 운행 등 다양한 형태로 고객을 만나고,<br />
                     고객이 원하는 목적지까지 <span>안전하고 편안한 이동 서비스를 제공</span>합니다.
                 </p>
-                <p class="title mobile">
+                <p class="title title-head mobile">
                     지니는 앱 호출, 일반 탑승, 예약 운행 등<br /> 다양한 형태로 고객을 만나고,<br />
                     고객이 원하는 목적지까지 <br /><span>안전하고 편안한 이동 서비스를 제공</span>합니다.
                 </p>
@@ -288,67 +317,75 @@ while ($popup = $popup_stt->fetch()) {
                     </div>
                 </div>
             </div>
-            <img class="work-tit" src="img/main/area3-service-title.png">
-            <img class="work-img pc" src="img/main/area3-service-img.png">
-            <img class="work-img mobile" src="img/main/area3-service-mo-img.png">
+
         </div>
         <div class="tab-area">
             <div class="pay-wrap">
-                <img class="pay-img" src="img/main/tab-pay-img.png">
-                <div class="chart-container">
-                    <div class="chart1">
-                        <div class="title">
-                            고정급
-                        </div>
-                        <div class="flex">
-                            <div class="item">
-                                <p class="date">주 6일 주간</p>
-                                <p class="pay">약 <strong>190</strong>만원</p>
-                            </div>
-                            <div class="item">
-                                <p class="date">주 6일 야간</p>
-                                <p class="pay">약 <strong>230</strong>만원</p>
-                            </div>
-                            <div class="item">
-                                <p class="date">주 5일 주간</p>
-                                <p class="pay">약 <strong>160</strong>만원</p>
-                            </div>
-                            <div class="item">
-                                <p class="date">주 5일 야간</p>
-                                <p class="pay">약 <strong>190</strong>만원</p>
-                            </div>
-                        </div>
+                <div class="pc">
+                    <img class="pay-img" src="img/main/tab-pay-pc.png">
+                    <div class="chart-container">
+                        <img class="icon2" src="img/main/down-icon.png">
+                        <p class="txt">실제 급여 <strong>월 200만원 ~ 500만원</strong> 이상!</p>
+                        <img class="bottom" src="img/main/pay-bottom.png"/>
                     </div>
-                    <p class="chart1-text">
-                        *고정급은 만근 시, 필수로 지급되는 금액입니다. (2023년 금액)<br>
-                        **택시드라이버는 간주근로제 적용
-                    </p>
-                    <img class="icon1" src="img/main/plus-icon.png">
-                    <p class="chart2-title">월 영업목표 매출 초과 달성 시</p>
-                    <div class="chart2-wrap">
-                        <div class="chart2">
-                            <div class="title">
-                                성과급
-                            </div>
-                            <div class="info">
-                                월 영업목표 매출<br>
-                                <strong>초과분의 50% 지급</strong>
-                            </div>
-                        </div>
-                        <div class="chart2">
-                            <div class="title">
-                                인센티브
-                            </div>
-                            <div class="info">
-                                <strong>im26 </strong><span class="sub">(주 6일제)</span> 만 대상<br>
-                                <p class="small">24일 이상 근무 시, <br class="mobile">최대 20만원 인센티브 지급</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img class="icon2" src="img/main/down-icon.png">
-                    <p class="txt">실제 급여 <strong>월 200만원 ~ 500만원</strong> 이상!</p>
                 </div>
-                <img class="bottom" src="img/main/pay-bottom.png"/>
+                <div class="mobile">
+                    <img class="pay-img" src="img/main/tab-pay-img.png">
+                    <div class="chart-container">
+                        <div class="chart1">
+                            <div class="title">
+                                고정급
+                            </div>
+                            <div class="flex">
+                                <div class="item">
+                                    <p class="date">주 6일 주간</p>
+                                    <p class="pay">약 <strong>190</strong>만원</p>
+                                </div>
+                                <div class="item">
+                                    <p class="date">주 6일 야간</p>
+                                    <p class="pay">약 <strong>230</strong>만원</p>
+                                </div>
+                                <div class="item">
+                                    <p class="date">주 5일 주간</p>
+                                    <p class="pay">약 <strong>160</strong>만원</p>
+                                </div>
+                                <div class="item">
+                                    <p class="date">주 5일 야간</p>
+                                    <p class="pay">약 <strong>190</strong>만원</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="chart1-text">
+                            *고정급은 만근 시, 필수로 지급되는 금액입니다. (2023년 금액)<br>
+                            **택시드라이버는 간주근로제 적용
+                        </p>
+                        <img class="icon1" src="img/main/plus-icon.png">
+                        <p class="chart2-title">월 영업목표 매출 초과 달성 시</p>
+                        <div class="chart2-wrap">
+                            <div class="chart2">
+                                <div class="title">
+                                    성과급
+                                </div>
+                                <div class="info">
+                                    월 영업목표 매출<br>
+                                    <strong>초과분의 50% 지급</strong>
+                                </div>
+                            </div>
+                            <div class="chart2">
+                                <div class="title">
+                                    인센티브
+                                </div>
+                                <div class="info">
+                                    <strong>im26 </strong><span class="sub">(주 6일제)</span> 만 대상<br>
+                                    <p class="small">24일 이상 근무 시, <br class="mobile">최대 20만원 인센티브 지급</p>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="icon2" src="img/main/down-icon.png">
+                        <p class="txt">실제 급여 <strong>월 200만원 ~ 500만원</strong> 이상!</p>
+                        <img class="bottom" src="img/main/pay-bottom.png"/>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -403,8 +440,14 @@ while ($popup = $popup_stt->fetch()) {
             </div>
         </div>
     </div>
+    <div class="tax-wrap">
+        <img class="work-tit" src="img/main/area3-service-title.png">
+        <img class="work-img pc" src="img/main/area3-service-img.png">
+        <img class="work-img mobile" src="img/main/area3-service-mo-img.png">
+    </div>
     <div class="target-wrap">
-        <img class="title" src="img/main/target-title.png">
+        <img class="title pc" src="img/main/target-title.png">
+        <img class="title mobile" src="img/main/target-title-mo.png">
         <div class="chart">
             <div class="item">
                 <p class="title-wrap">모집 부문</p>
@@ -475,294 +518,298 @@ while ($popup = $popup_stt->fetch()) {
     <div class="locate-container">
         <div class="locate-wrap">
             <img class="title" src="img/main/locate-title.png">
-            <div class="map-wrap pc">
-                <img id="map1" class="map map1" src="img/main/locate/map1.png">
-                <img id="map2" class="map map2" src="img/main/locate/map2.png">
-                <img id="map3" class="map map3" src="img/main/locate/map3.png">
-                <img id="map4" class="map map4" src="img/main/locate/map4.png">
-                <img id="map5" class="map map5" src="img/main/locate/map5.png">
-            </div>
-            <div class="map-wrap mobile">
-                <img class="map map1" src="img/main/locate/map1-mo.png">
-                <img class="map map2" src="img/main/locate/map2-mo.png">
-                <img class="map map3" src="img/main/locate/map3-mo.png">
-                <img class="map map4" src="img/main/locate/map4-mo.png">
-                <img class="map map5" src="img/main/locate/map5-mo.png">
-            </div>
-            <div class="map-tab-wrap">
+            <div class="map-tab-wrap map-tab-wrap-mobile">
                 <div class="map-tab active">동부</div>
                 <div class="map-tab">서부</div>
                 <div class="map-tab">중부</div>
                 <div class="map-tab">남부</div>
                 <div class="map-tab">북부</div>
             </div>
-            <div class="map-tab-container">
-                <!--  동부  -->
-                <div class="map-tab-area">
-                    <div class="info-container">
-                        <?php if($locate_stt1->rowCount() > 0){ ?>
-                        <div class="locate-name">
-                            <p class="name">강동</p>
-                        </div>
-                        <div class="info-wrap">
-                            <div class="info-wrap">
-                                <?php
-                                while ($row1 = $locate_stt1->fetch()) {
-                                    ?>
-                                    <div class="item">
-                                        <div class="tag">
-                                            <p><?= $row1['name'] ?></p>
-                                        </div>
-                                        <div class="addr-wrap">
-                                            <p class="addr"><?= $row1['address'] ?></p>
-                                        </div>
+
+            <div class="map-flex">
+                <div class="map-wrap pc">
+                    <img id="map1" class="map map1" src="img/main/locate/map1.png">
+                    <img id="map2" class="map map2" src="img/main/locate/map2.png">
+                    <img id="map3" class="map map3" src="img/main/locate/map3.png">
+                    <img id="map4" class="map map4" src="img/main/locate/map4.png">
+                    <img id="map5" class="map map5" src="img/main/locate/map5.png">
+                </div>
+                <div class="map-wrap mobile">
+                    <img class="map map1" src="img/main/locate/map1-mo.png">
+                    <img class="map map2" src="img/main/locate/map2-mo.png">
+                    <img class="map map3" src="img/main/locate/map3-mo.png">
+                    <img class="map map4" src="img/main/locate/map4-mo.png">
+                    <img class="map map5" src="img/main/locate/map5-mo.png">
+                </div>
+
+                <div class="map-tab-container">
+                    <!--  동부  -->
+                    <div class="map-tab-area">
+                        <div class="info-container">
+                            <?php if($locate_stt1->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">강동</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row1 = $locate_stt1->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row1['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row1['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
-                                <?php } ?>
-                            </div>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <?php } ?>
-                    </div>
-                    <div class="info-container">
-                        <?php if($locate_stt2->rowCount() > 0){ ?>
-                        <div class="locate-name">
-                            <p class="name">송파</p>
-                        </div>
-                        <div class="info-wrap">
-                            <div class="info-wrap">
-                                <?php
-                                while ($row2 = $locate_stt2->fetch()) {
-                                    ?>
-                                    <div class="item">
-                                        <div class="tag">
-                                            <p><?= $row2['name'] ?></p>
-                                        </div>
-                                        <div class="addr-wrap">
-                                            <p class="addr"><?= $row2['address'] ?></p>
-                                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt2->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">송파</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row2 = $locate_stt2->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row2['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row2['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
-                                <?php } ?>
-                            </div>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <?php } ?>
                     </div>
-                </div>
-                <!--  서부  -->
-                <div class="map-tab-area">
-                    <div class="info-container">
-                        <?php if($locate_stt3->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">강서</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row3 = $locate_stt3->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row3['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row3['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                    <!--  서부  -->
+                    <div class="map-tab-area">
+                        <div class="info-container">
+                            <?php if($locate_stt3->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">강서</p>
                                 </div>
-                            </div>
-                        <?php } ?>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row3 = $locate_stt3->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row3['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row3['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt4->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">마포</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row4 = $locate_stt4->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row4['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row4['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt5->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">서대문</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row5 = $locate_stt5->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row5['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row5['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt6->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">은평</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row6 = $locate_stt6->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row6['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row6['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
-                    <div class="info-container">
-                        <?php if($locate_stt4->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">마포</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row4 = $locate_stt4->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row4['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row4['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                    <!--  중부  -->
+                    <div class="map-tab-area">
+                        <div class="info-container">
+                            <?php if($locate_stt7->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">성동</p>
                                 </div>
-                            </div>
-                        <?php } ?>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row7 = $locate_stt7->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row7['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row7['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
-                    <div class="info-container">
-                        <?php if($locate_stt5->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">서대문</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row5 = $locate_stt5->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row5['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row5['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                    <!--  남부  -->
+                    <div class="map-tab-area">
+                        <div class="info-container">
+                            <?php if($locate_stt8->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">구로</p>
                                 </div>
-                            </div>
-                        <?php } ?>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row8 = $locate_stt8->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row8['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row8['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt9->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">동작</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row9 = $locate_stt9->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row9['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row9['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="info-container">
+                            <?php if($locate_stt10->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">영등포</p>
+                                </div>
+                                <div class="info-wrap">
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row10 = $locate_stt10->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row10['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row10['address'] ?></p>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
-                    <div class="info-container">
-                        <?php if($locate_stt6->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">은평</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row6 = $locate_stt6->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row6['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row6['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                    <!--  북부  -->
+                    <div class="map-tab-area">
+                        <div class="info-container">
+                            <?php if($locate_stt11->rowCount() > 0){ ?>
+                                <div class="locate-name">
+                                    <p class="name">도봉</p>
                                 </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-                <!--  중부  -->
-                <div class="map-tab-area">
-                    <div class="info-container">
-                        <?php if($locate_stt7->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">성동</p>
-                            </div>
-                            <div class="info-wrap">
                                 <div class="info-wrap">
-                                    <?php
-                                    while ($row7 = $locate_stt7->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row7['name'] ?></p>
+                                    <div class="info-wrap">
+                                        <?php
+                                        while ($row11 = $locate_stt11->fetch()) {
+                                            ?>
+                                            <div class="item">
+                                                <div class="tag">
+                                                    <p><?= $row11['name'] ?></p>
+                                                </div>
+                                                <div class="addr-wrap">
+                                                    <p class="addr"><?= $row11['address'] ?></p>
+                                                </div>
                                             </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row7['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-                <!--  남부  -->
-                <div class="map-tab-area">
-                    <div class="info-container">
-                        <?php if($locate_stt8->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">구로</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row8 = $locate_stt8->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row8['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row8['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="info-container">
-                        <?php if($locate_stt9->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">동작</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row9 = $locate_stt9->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row9['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row9['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="info-container">
-                        <?php if($locate_stt10->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">영등포</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row10 = $locate_stt10->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row10['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row10['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-                <!--  북부  -->
-                <div class="map-tab-area">
-                    <div class="info-container">
-                        <?php if($locate_stt11->rowCount() > 0){ ?>
-                            <div class="locate-name">
-                                <p class="name">도봉</p>
-                            </div>
-                            <div class="info-wrap">
-                                <div class="info-wrap">
-                                    <?php
-                                    while ($row11 = $locate_stt11->fetch()) {
-                                        ?>
-                                        <div class="item">
-                                            <div class="tag">
-                                                <p><?= $row11['name'] ?></p>
-                                            </div>
-                                            <div class="addr-wrap">
-                                                <p class="addr"><?= $row11['address'] ?></p>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>

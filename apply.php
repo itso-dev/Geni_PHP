@@ -90,6 +90,12 @@ function get_client_ip()
     const clickOption = (target) => {
         const recommender = document.getElementsByName('recommender');
         recommender[0].value = target.value;
+        $("#reco-text").text(target.value);
+    }
+    const clickOptionFlow = (target) => {
+        const flow = document.getElementsByName('flow');
+        flow[0].value = target.value;
+        $("#flow-text").text(target.value);
     }
 
     /* 주소 */
@@ -197,8 +203,9 @@ function get_client_ip()
 
                     <div class="field-wrap">
                         <p class="field-title">4. 지원자 거주지 <span>(필수)</span><b class="star">*</b></p>
-                        <p class="field-text"></p>
                         <div class="field-input-text-wrap">
+                            <p class="field-text">*지역을 알려주시면 가까운 근무지를 안내해 드립니다.</p>
+                            <div class="address-btn" onclick="findAddr()">주소 찾기</div>
                             <div class="input-wrap">
                                 <div class="address-input">
                                     <input type="text" id="address1" name="address1" oninput="onInput(this, 'address')"
@@ -206,12 +213,8 @@ function get_client_ip()
                                         placeholder="지번 또는 도로명 주소" />
                                     <img src="img/apply/confirm.png" class="confirm" />
                                 </div>
-                                <div class="address-btn" onclick="findAddr()">주소 찾기</div>
                             </div>
-                            <div class="input-wrap detail-wrap">
-                                <input type="text" id="address2" name="address2" oninput="onInput(this, 'address2')"
-                                    onchange="onInput(this, 'address2')" class="text-input" placeholder="상세 주소" />
-                            </div>
+
                         </div>
                     </div>
 
@@ -301,14 +304,36 @@ function get_client_ip()
                             </div>
                         </div>
                     </div>
-
                     <div class="field-wrap">
-                        <p class="field-title">6. 추천인 성명 <span class="ch">(선택)</span><b class="star">*</b></p>
+                        <p class="field-title">6. 지원 경로 <span>(필수)</span><b class="star">*</b></p>
                         <div class="field-input-text-wrap">
-                            <p class="field-text">*예시 : 나지니</p>
+                            <p class="field-text"></p>
                             <div class="input-select">
                                 <div class="select-wrap" onclick="onSelect(event)">
-                                    <input type="text" readonly name="recommender" class="recommender-data"
+                                    <span id="flow-text">(선택)</span>
+                                    <input type="hidden" readonly name="flow" class="recommender-data"
+                                           value="(선택)" />
+                                    <img src="img/apply/arr.png" class="arr" />
+                                </div>
+                                <div class="select-wrap select-list-wrap">
+                                    <input class="list-item" type="text" readonly name="recom-item" value="온라인"
+                                           onclick="clickOptionFlow(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="오프라인"
+                                           onclick="clickOptionFlow(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="서치펌"
+                                           onclick="clickOptionFlow(this)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-wrap">
+                        <p class="field-title">7. 추천인 성명 <span class="ch">(선택)</span><b class="star">*</b></p>
+                        <div class="field-input-text-wrap">
+                            <p class="field-text">*추천인이 있는 경우만 작성해 주세요</p>
+                            <div class="input-select">
+                                <div class="select-wrap" onclick="onSelect(event)">
+                                    <span id="reco-text">(선택)</span>
+                                    <input type="hidden" readonly name="recommender" class="recommender-data"
                                         value="(선택)" />
                                     <img src="img/apply/arr.png" class="arr" />
                                 </div>
@@ -319,9 +344,16 @@ function get_client_ip()
                                         onclick="clickOption(this)" />
                                     <input class="list-item" type="text" readonly name="recom-item" value="hy 프레시 매니저"
                                         onclick="clickOption(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="애이스휴먼파워"
+                                           onclick="clickOption(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="에이치엔티"
+                                           onclick="clickOption(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="인커넥트"
+                                           onclick="clickOption(this)" />
+                                    <input class="list-item" type="text" readonly name="recom-item" value="피플잡"
+                                           onclick="clickOption(this)" />
                                 </div>
                             </div>
-
                             <div class="input-wrap">
                                 <input type="text" name="recommender_name" class="text-input" />
                             </div>

@@ -35,8 +35,10 @@ $phpExcel->getActiveSheet()
     ->setCellValue("D1", "출생년도")
     ->setCellValue("E1", "지원자 거주지")
     ->setCellValue("F1", "희망 근무지")
-    ->setCellValue("G1", "추천인 성명")
-    ->setCellValue("H1", "아이피");
+    ->setCellValue("G1", "추천인 정보")
+    ->setCellValue("H1", "추천인 상세")
+    ->setCellValue("I1", "결과")
+    ->setCellValue("J1", "아이피");
 
 $line = 2;
 while($list_row=$list_stt->fetch()) {
@@ -47,8 +49,10 @@ while($list_row=$list_stt->fetch()) {
         ->setCellValue("D".$line, $list_row['birth_date'])
         ->setCellValue("E".$line,$list_row['address'])
         ->setCellValue("F".$line,$list_row['location'])
-        ->setCellValue("G".$line,$list_row['recommender']." / " .$list_row['recommender_name'])
-        ->setCellValue("H".$line,$list_row['writer_ip']);
+        ->setCellValue("G".$line,$list_row['recommender'])
+        ->setCellValue("H".$line,$list_row['recommender_name'])
+        ->setCellValue("I".$line,$list_row['result_status'])
+        ->setCellValue("J".$line,$list_row['writer_ip']);
     $line++;
 }
 

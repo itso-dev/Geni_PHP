@@ -85,7 +85,7 @@
     if($sch_manager == ""){
         $sch_manager_key = " where manager_fk is not NULL";
     }else{
-        $sch_manager_key = " manager_fk = $sch_manager";
+        $sch_manager_key = "where manager_fk = $sch_manager";
     }
     //상담 결과 검색
     if($sch_c_result == ""){
@@ -97,13 +97,20 @@
     if($sch_date == ""){
         $sch_date_key = "";
     }else{
-        $sch_date_key = " AND write_date between '$sch_date 00:00:00' and '$sch_date 23:59:59'";
+        $sch_date_key = " or write_date between '$sch_date 00:00:00' and '$sch_date 23:59:59'";
     }
     // 통합 검색
     if($stx == ""){
         $stx_key = "";
     }else{
-        $stx_key = " AND ( name like '%$stx%' OR `desc` like '%$stx%' OR contact_desc like '%$stx%' OR  writer_ip like '%$stx%' )";
+        $stx_key = " AND ( name like '%$stx%' OR 
+        `phone` like '%$stx%' OR 
+        address like '%$stx%' OR 
+        location like '%$stx%' OR 
+        recommender like '%$stx%' OR 
+        recommender_name like '%$stx%' OR 
+        birth_date like '%$stx%' OR 
+        writer_ip like '%$stx%' )";
     }
 
 
@@ -119,8 +126,10 @@
                 .$sch_date_key
                 .$stx_key
                 ." order by id desc limit $first, $list_size";
+
     $list_stt=$db_conn->prepare($list_sql);
     $list_stt->execute();
+
 
     //총 페이지를 구하기 위한 sql문
     $total_sql = "select count(*) from contact_tbl";
@@ -133,6 +142,11 @@
     $row = ceil($_GET['page']/$page_size);
 
     $start_page=(($row-1)*$page_size)+1;
+
+    //담당자 리스트
+    $admin_sql = "select * from admin_tbl order by id";
+    $admin_stt=$db_conn->prepare($admin_sql);
+    $admin_stt->execute();
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="./css/apply_list.css" rel="stylesheet" />
@@ -156,7 +170,8 @@
                         </div>
                         <button type="submit" name="act_button" id="delete_btn" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-danger btn-sm shadow">선택삭제</button>
                         <button type="submit" id="export_chks" class="btn btn-primary btn-sm float-right shadow" onclick="document.pressed = '다운로드'" data-href="./ajax/apply_list_export.php">선택 엑셀 다운로드</button>
-                        <a id="export_all" href="./ajax/apply_list_export.php?type=all" target="_self" class="btn btn-sm float-right shadow">액셀 다운로드</a>
+                        <a id="export_all" href="./ajax/apply_list_export.php?type=all" target="_self" class="btn btn-sm float-right shadow">전체 액셀 다운로드</a>
+                        <a id="export_upload" style="background-color: green;" href="exel_upload_form.php?menu=1" target="_self" class="btn btn-sm float-right shadow">액셀 업로드</a>
                     </div>
                 </div>
                 <div class="mx-3 my-2 p-3 page-header border">
@@ -180,8 +195,11 @@
                     <div class="row mx-0 mb-2">
                         <div class="col-6 col-md-2 my-1 my-md-0 px-1">
                             <select class="custom-select custom-select-sm rounded-0" name="sch_manager">
-                                <option value="">전체</option>
-                                <option value="admin">관리자(admin)</option>
+                                <?php
+                                while($admin_row1=$admin_stt->fetch()){
+                                    ?>
+                                    <option value="<?= $admin_row1['id'] ?>"><?= $admin_row1['login_name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="col-6 col-md-2 my-1 my-md-0 px-1">
@@ -197,8 +215,8 @@
                             </select>
                         </div>
                         <div class="col-12 col-md-2 py-md-0 my-1 my-md-0 px-1 position-relative">
-                            <input type="text" class="form-control h-100 bg-white date-picker" value="<?= $sch_date ?>" name="sch_date" id="sch_date" autocomplete="off" placeholder="생성일" style="border-radius: 0;border: 1px solid #ced4da;">
-                            <a class="position-absolute" href="javascript:initSchDate();" style="top:23%; right:6%;"><img src="https://www.heedafranchise.co.kr/adm/img/close.png" class="w-75"></a>
+                            <input type="date" class="form-control h-100 bg-white date-picker" value="<?= $sch_date ?>" name="sch_date" autocomplete="off" placeholder="생성일" style="border-radius: 0;border: 1px solid #ced4da;">
+
                         </div>
                         <div class="col-12 col-md-2 my-1 my-md-0 px-1 position-relative">
                             <input type="text" class="form-control h-100 pr-5" value="<?= $stx ?>" name="stx" id="sch_str" placeholder="검색어 입력" style="border-radius: 0;border: 1px solid #ced4da;">
@@ -218,13 +236,14 @@
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 70px;"><input type="checkbox" class="checkbox-controller" onclick="check_all(this)"></th>
                                     <th scope="col" style="cursor: pointer; width: 182px;" class="text-left" onclick="sortColumn('sort_date');">지원일</th>
-                                    <th scope="col" style="width:102px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자 명</th>
+                                    <th scope="col" style="width:102px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자</th>
                                     <th scope="col" style="width: 192px;">연락처</th>
                                     <th scope="col" style="width: 192px;">출생년도</th>
                                     <th scope="col" style="width: 300px;">지원자 거주지</th>
-                                    <th scope="col" style="width: 110px;">희망 근무지</th>
-                                    <th scope="col" style="width: 250px;">추천인 성명</th>
-                                     <th scope="col" style="width: 110px;">상담로그</th>
+                                    <th scope="col" style="width: 210px;">희망 근무지</th>
+                                    <th scope="col" style="width: 250px;">추천인 정보</th>
+                                    <th scope="col" style="width: 250px;">추천인 상세</th>
+                                     <th scope="col" style="width: 150px;">상담내역</th>
                                     <th scope="col" style="width: 159px;">결과</th>
                                     <th scope="col" style="width: 159px;">담당자</th>
                                     <th scope="col" style="width: 250px;">아이피</th>
@@ -242,13 +261,14 @@
                                         <label for="chk_0" class="sound_only"></label>
                                         <input type="checkbox" name="chk[]" class="checkbox-list" value="<?= $list_row['id'] ?>" id="chk_">
                                     </td>
-                                    <td><?=$list_row['write_date']?></td>
+                                    <td><?=substr($list_row['write_date'], 0, 10 )?></td>
                                     <td><?=$list_row['name']?></td>
                                     <td><?=$list_row['phone']?></td>
                                     <td><?=$list_row['birth_date']?></td>
                                     <td><?=$list_row['address']?></td>
                                     <td><?=$list_row['location']?></td>
-                                    <td><?=$list_row['recommender']?> / <?=$list_row['recommender_name']?></td>
+                                    <td><?=$list_row['recommender']?> </td>
+                                    <td><?=$list_row['recommender_name']?></td>
 
                                     <td>
                                         <button type="button" class="button button4" style="width: 90px;" onclick="openCounselModal(<?= $list_row['id'] ?>);">상담내역</button>
@@ -272,11 +292,9 @@
                                         <select class="custom-select custom-select-sm" onchange="changeManager('<?=$list_row['id']?>', this.value)">
                                             <option value="0" <? if($list_row['manager_fk'] == 0) echo "selected"?>>없음</option>
                                             <?php
-                                            //담당자 리스트
-                                            $admin_sql = "select * from admin_tbl order by id";
-                                            $admin_stt=$db_conn->prepare($admin_sql);
-                                            $admin_stt->execute();
-                                            while($admin_row=$admin_stt->fetch()){
+                                            $admin_stt1=$db_conn->prepare($admin_sql);
+                                            $admin_stt1->execute();
+                                            while($admin_row=$admin_stt1->fetch()){
                                             ?>
                                             <option value="<?= $admin_row['id'] ?>" <? if($list_row['manager_fk'] == $admin_row['id']) echo "selected"?>><?= $admin_row['login_name'] ?></option>
                                             <?php } ?>
