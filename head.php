@@ -24,7 +24,6 @@ $site = $site_info_stt -> fetch();
     <meta property="og:type" content="article" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
-    <title><?=$site[1]?></title>
 
     <!-- <link rel="stylesheet" type="text/css" href="css/common.css" rel="stylesheet" /> -->
 

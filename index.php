@@ -19,6 +19,7 @@ $db_conn->prepare($view_sql)->execute(
 
 
 ?>
+<title>i.M 지니</title>
 
 <link rel="stylesheet" type="text/css" href="css/index.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/reset.css" rel="stylesheet" />

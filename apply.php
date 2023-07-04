@@ -22,6 +22,7 @@ function get_client_ip()
     opcache_reset();
 }
 ?>
+<title>i.M 지니 입사지원</title>
 
 <link rel="stylesheet" type="text/css" href="css/apply.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/reset.css" rel="stylesheet" />
@@ -305,29 +306,7 @@ function get_client_ip()
                         </div>
                     </div>
                     <div class="field-wrap">
-                        <p class="field-title">6. 지원 경로 <span>(필수)</span><b class="star">*</b></p>
-                        <div class="field-input-text-wrap">
-                            <p class="field-text"></p>
-                            <div class="input-select">
-                                <div class="select-wrap" onclick="onSelect(event)">
-                                    <span id="flow-text">(선택)</span>
-                                    <input type="hidden" readonly name="flow" class="recommender-data"
-                                           value="(선택)" />
-                                    <img src="img/apply/arr.png" class="arr" />
-                                </div>
-                                <div class="select-wrap select-list-wrap">
-                                    <input class="list-item" type="text" readonly name="recom-item" value="온라인"
-                                           onclick="clickOptionFlow(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="오프라인"
-                                           onclick="clickOptionFlow(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="서치펌"
-                                           onclick="clickOptionFlow(this)" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field-wrap">
-                        <p class="field-title">7. 추천인 성명 <span class="ch">(선택)</span><b class="star">*</b></p>
+                        <p class="field-title">6. 추천인 <span class="ch">(선택)</span></p>
                         <div class="field-input-text-wrap">
                             <p class="field-text">*추천인이 있는 경우만 작성해 주세요</p>
                             <div class="input-select">
@@ -344,18 +323,12 @@ function get_client_ip()
                                         onclick="clickOption(this)" />
                                     <input class="list-item" type="text" readonly name="recom-item" value="hy 프레시 매니저"
                                         onclick="clickOption(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="애이스휴먼파워"
-                                           onclick="clickOption(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="에이치엔티"
-                                           onclick="clickOption(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="인커넥트"
-                                           onclick="clickOption(this)" />
-                                    <input class="list-item" type="text" readonly name="recom-item" value="피플잡"
+                                    <input class="list-item" type="text" readonly name="recom-item" value="서치펌"
                                            onclick="clickOption(this)" />
                                 </div>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="recommender_name" class="text-input" />
+                                <input type="text" name="recommender_name" class="text-input" placeholder="성명 또는 상호명" />
                             </div>
                         </div>
                     </div>

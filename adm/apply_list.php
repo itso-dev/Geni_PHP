@@ -170,8 +170,8 @@
                         </div>
                         <button type="submit" name="act_button" id="delete_btn" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-danger btn-sm shadow">선택삭제</button>
                         <button type="submit" id="export_chks" class="btn btn-primary btn-sm float-right shadow" onclick="document.pressed = '다운로드'" data-href="./ajax/apply_list_export.php">선택 엑셀 다운로드</button>
-                        <a id="export_all" href="./ajax/apply_list_export.php?type=all" target="_self" class="btn btn-sm float-right shadow">전체 액셀 다운로드</a>
-                        <a id="export_upload" style="background-color: green;" href="exel_upload_form.php?menu=1" target="_self" class="btn btn-sm float-right shadow">액셀 업로드</a>
+                        <a id="export_all" href="./ajax/apply_list_export.php?type=all" target="_self" class="btn btn-sm float-right shadow">전체 엑셀 다운로드</a>
+                        <a id="export_upload" style="background-color: green;" href="exel_upload_form.php?menu=1" target="_self" class="btn btn-sm float-right shadow">엑셀 업로드</a>
                     </div>
                 </div>
                 <div class="mx-3 my-2 p-3 page-header border">
@@ -236,10 +236,10 @@
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 70px;"><input type="checkbox" class="checkbox-controller" onclick="check_all(this)"></th>
                                     <th scope="col" style="cursor: pointer; width: 182px;" class="text-left" onclick="sortColumn('sort_date');">지원일</th>
-                                    <th scope="col" style="width:102px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자</th>
+                                    <th scope="col" style="width:202px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자</th>
                                     <th scope="col" style="width: 192px;">연락처</th>
                                     <th scope="col" style="width: 192px;">출생년도</th>
-                                    <th scope="col" style="width: 300px;">지원자 거주지</th>
+                                    <th scope="col" style="width: 600px;">지원자 거주지</th>
                                     <th scope="col" style="width: 210px;">희망 근무지</th>
                                     <th scope="col" style="width: 250px;">추천인 정보</th>
                                     <th scope="col" style="width: 250px;">추천인 상세</th>
@@ -271,7 +271,7 @@
                                     <td><?=$list_row['recommender_name']?></td>
 
                                     <td>
-                                        <button type="button" class="button button4" style="width: 90px;" onclick="openCounselModal(<?= $list_row['id'] ?>);">상담내역</button>
+                                        <button type="button" class="button button4" style="width: 110px;" onclick="openCounselModal(<?= $list_row['id'] ?>);">상담내역</button>
                                     </td>
                                     <!-- <td>
                                         <button type="button" class="button button4" style="width: 90px;" onclick="openCounselLogModal(2630);">기록보기</button>

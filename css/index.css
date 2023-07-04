@@ -141,14 +141,14 @@
   min-height: 209px;
 }
 .area2 {
-  padding: 200px 0;
+  padding: 100px 0;
 }
 .area2 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 0 auto;
   width: 90%;
 }
@@ -214,12 +214,14 @@
   display: flex;
   justify-content: center;
   gap: 90px;
-  max-width: 1200px;
-  margin: 150px auto;
+  max-width: 1024px;
+  margin: 150px auto 70px;
 }
 .area3 .geni-wrap .people {
   max-width: 150px;
   width: 30%;
+  position: relative;
+  top: 80px;
 }
 
 .area3 .geni-wrap .text-wrap {
@@ -241,7 +243,7 @@
 }
 .area3 .geni-wrap .text-wrap .sub-title1 {
   color: #333;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 300;
   letter-spacing: -3px;
   margin: 50px 0 30px 0;
@@ -263,15 +265,18 @@
 .area3 .three-keywords {
   display: flex;
   gap: 15px;
-  max-width: 1000px;
-  margin: 0 auto 300px auto;
+  max-width: 700px;
+  margin: 0 auto -60px auto;
+  position: relative;
+  left: 5%;
+  bottom: 159px;
 }
 
 .area3 .three-keywords .keyword {
   width: 33.3%;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 13px;
   justify-content: center;
   align-items: center;
   padding: 30px;
@@ -284,7 +289,7 @@
 .area3 .three-keywords .keyword .title {
   color: #3656ff;
   text-align: center;
-  font-size: 40px;
+  font-size: 25px;
   font-family: "S-Core Dream";
   font-weight: 700;
   letter-spacing: -2.5px;
@@ -299,7 +304,7 @@
   width: 100%;
   color: #333;
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
   font-family: "S-Core Dream";
   font-weight: 300;
   letter-spacing: -1.2px;
@@ -318,18 +323,18 @@
   white-space: nowrap;
   color: #fff;
   text-align: center;
-  font-size: 40px;
+  font-size: 35px;
   font-family: "S-Core Dream";
   font-weight: 700;
   letter-spacing: -2px;
-  padding: 20px 82px;
+  padding: 14px 62px;
   border-radius: 50px;
   background: #bac0db;
   cursor: pointer;
   box-sizing: border-box;
 }
 .area3 .tab-container{
-  margin: 80px auto 150px;
+  margin: 50px auto 150px;
 
 }
 .area3 .service-wrap {
@@ -338,7 +343,7 @@
 .area3 .service-wrap .title {
   color: #333;
   text-align: center;
-  font-size: 36px;
+  font-size: 25px;
   font-family: "S-Core Dream";
   font-weight: 300;
   letter-spacing: -1.8px;
@@ -351,21 +356,21 @@
 
 .area3 .service-wrap .service {
   display: flex;
-  gap: 100px;
+  gap: 70px;
   justify-content: center;
 }
 .area3 .service-wrap .service .service-item{
   text-align: center;
 }
 .area3 .service-wrap .service img {
-  width: 220px;
+  width: 180px;
   margin-bottom: 10px;
   border-radius: 50%;
   border: #3656ff 2px solid;
 }
 .area3 .service-wrap .service .sub-tit1 {
   text-align: center;
-  font-size: 26px;
+  font-size: 22px;
   font-family: "Noto Sans KR";
   line-height: 37px;
   letter-spacing: -1.3px;
@@ -374,19 +379,19 @@
 .area3 .service-wrap .service .tit {
   color: #333;
   text-align: center;
-  font-size: 40px;
+  font-size: 28px;
   font-family: "S-Core Dream";
   font-weight: 500;
   letter-spacing: -2px;
-  padding: 30px 0 10px 0;
+  padding: 15px 0 10px 0;
 }
 .area3 .service-wrap .service .sub-tit2 {
   color: #333;
   text-align: center;
-  font-size: 28px;
+  font-size: 18px;
   font-family: Noto Sans KR;
   font-weight: 300;
-  line-height: 37px;
+  line-height: 24px;
   letter-spacing: -1.4px;
 }
 .tab-container .tab-area{
@@ -399,7 +404,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  max-width: 1280px;
+  max-width: 960px;
   padding: 0 20px;
   margin: 30px auto 0;
   width: 100%;
@@ -419,10 +424,10 @@
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.07);
 }
 .work-info .work .title {
-  padding: 12px 0px;
+  padding: 10px 0px;
   color: #fff;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-family: Noto Sans KR;
   white-space: nowrap;
   font-weight: 700;
@@ -437,7 +442,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 220px;
+  height: 130px;
   margin: auto;
 }
 
@@ -445,7 +450,7 @@
   list-style: disc;
   color: #333;
   text-align: center;
-  font-size: 23px;
+  font-size: 16px;
   font-family: Noto Sans KR;
   letter-spacing: -1.25px;
 }
@@ -453,23 +458,23 @@
   text-align: left;
 }
 .work-info .work .text strong {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
 }
 .tax-wrap .work-tit{
   display: block;
   max-width: 364px;
-  margin: 100px auto 100px;
+  margin: 100px auto 50px;
   width: 60%;
 }
 .tax-wrap .work-img{
-  max-width: 1240px;
+  max-width: 800px;
   display: block;
   margin: 0 auto 0;
   width: 90%;
 }
 .tab-container .pay-wrap .pay-img{
-  max-width: 1286px;
+  max-width: 1024px;
   display: block;
   margin: 0 auto;
   width: 90%;
@@ -613,23 +618,23 @@
 .tab-container .pay-wrap .chart-container .txt{
   color: #333;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-family: S-Core Dream;
   font-weight: 300;
   letter-spacing: -3px;
   margin-bottom: 50px;
 }
 .tab-container .pay-wrap .bottom{
-  max-width: 700px;
+  max-width: 660px;
   width: 70%;
   margin: 0 auto;
   display: block;
 }
 .tab-container .welfare{
   width: 90%;
-  max-width: 1000px;
+  max-width: 750px;
   display: block;
-  margin: -50px auto 0;
+  margin: -30px auto 0;
 }
 .tab-container .welfare-txt{
   color: #999;
@@ -647,7 +652,7 @@
 .tab-container .vision-wrap .tit{
   color: #333;
   text-align: center;
-  font-size: 36px;
+  font-size: 25px;
   font-family: S-Core Dream;
   font-weight: 300;
   letter-spacing: -1.8px;
@@ -661,7 +666,7 @@
   gap: 10px;
   justify-content: center;
   margin: 30px auto 0;
-  max-width: 1290px;
+  max-width: 900px;
   width: 90%;
 }
 .tab-container .vision-wrap .grid-wrap .item{
@@ -669,11 +674,11 @@
   border: 1px solid #EEE;
   background: #FFF;
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.10);
-  padding: 40px 10px 30px;
+  padding: 25px 10px 20px;
   box-sizing: border-box;
   color: #333;
   text-align: center;
-  font-size: 25px;
+  font-size: 19px;
   font-family: S-Core Dream;
   font-weight: 300;
   letter-spacing: -1.6px;
@@ -681,7 +686,7 @@
 }
 
 .tab-container .vision-wrap .grid-wrap .item:nth-child(2){
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .tab-container .vision-wrap .grid-wrap .item .red{
   color: #F85A57;
@@ -689,13 +694,13 @@
 .tab-container .vision-wrap .car{
   display: block;
   margin: 30px auto 20px;
-  max-width: 500px;
-  width: 70%;
+  max-width: 350px;
+  width: 55%;
 }
 .tab-container .vision-wrap .bottom{
   color: #333;
   text-align: center;
-  font-size: 36px;
+  font-size: 28px;
   font-family: S-Core Dream;
   font-weight: 300;
   letter-spacing: -1.8px;
@@ -704,16 +709,16 @@
   color: #02167C;
 }
 .target-wrap{
-  max-width: 1200px;
+  max-width: 1024px;
   width: 90%;
   margin: 0 auto;
-  padding: 150px 0;
+  padding: 100px 0 70px;
 }
 .target-wrap .title{
   max-width: 193px;
   width: 40%;
   display: block;
-  margin: 0 auto 100px;
+  margin: 0 auto 50px;
 }
 .target-wrap .chart{
   width: 100%;
@@ -739,7 +744,7 @@
   background: #464B67;
   color: #FFF;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-family: Noto Sans KR;
   font-weight: 700;
   letter-spacing: -1.2px;
@@ -750,14 +755,14 @@
   text-align: center;
 }
 .target-wrap .chart .item .img1{
-  max-width: 180px;
+  max-width: 165px;
   width: 90%;
-  margin-top: 70px;
+  margin-top: 40px;
 }
 .target-wrap .chart .item .img2{
-  max-width: 196px;
+  max-width: 165px;
   width: 90%;
-  margin-top: 80px;
+  margin-top: 50px;
 }
 .target-wrap .chart .item ul{
     margin-top: 40px;
@@ -765,24 +770,24 @@
 .target-wrap .chart .item li{
   list-style: disc;
   color: #333;
-  font-size: 25px;
+  font-size: 20px;
   font-family: Noto Sans KR;
   letter-spacing: -1.5px;
   text-align: left;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 .career-wrap{
   background: #F7F8FD;
-  padding: 150px 0;
+  padding: 70px 0 ;
 }
 .career-wrap .title{
   width: 40%;
   max-width: 193px;
   display: block;
-  margin: 0 auto 100px;
+  margin: 0 auto 50px;
 }
 .career-wrap .step-wrap{
-  max-width: 1040px;
+  max-width: 700px;
   width: 90%;
   display: flex;
   margin: 0 auto;
@@ -806,13 +811,13 @@
   left: -25%;
 }
 .video-wrap{
-  padding: 150px 0;
+  padding: 80px 0;
 }
 .video-wrap .title{
   max-width: 167px;
   width: 35%;
   display: block;
-  margin: 0 auto 100px;
+  margin: 0 auto 50px;
 }
 .youtube-container{
   max-width: 936px;
@@ -842,7 +847,7 @@
   margin-top: 25px;
 }
 .locate-container{
-  padding: 150px 0 0;
+  padding: 80px 0 0;
   background: #F7F7F7;
 }
 .locate-container .locate-wrap{
@@ -853,13 +858,13 @@
   max-width: 362px;
   width: 80%;
   display: block;
-  margin: 0 auto 100px;
+  margin: 0 auto 50px;
 }
 .locate-container .locate-wrap .map-wrap{
   width: 100%;
 }
 .locate-container .locate-wrap .map-wrap .map{
-  width: 100%;
+  width: 90%;
   display: none;
 }
 .locate-container .locate-wrap .map-wrap .map:nth-child(1){
@@ -879,13 +884,13 @@
   align-items: center;
   gap: 10px;
   width: 100%;
-  max-width: 1080px;
+  max-width: 890px;
   margin: 0 auto;
 }
 .locate-container .locate-wrap .map-flex{
   display: flex;
   align-items: center;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .locate-container .locate-wrap .map-flex .map-wrap{
@@ -893,8 +898,7 @@
 }
 .locate-container .locate-wrap .map-flex .map-wrap img{
   position: relative;
-  bottom: 0px;
-  margin-top: 20px;
+  bottom: 40px;
 }
 .locate-container .locate-wrap .map-flex .map-tab-container{
   width: 45%;
@@ -904,12 +908,12 @@
   border-radius: 50px;
   color: #FFF;
   text-align: center;
-  font-size: 36px;
+  font-size: 23px;
   font-family: S-Core Dream;
   font-weight: 200;
   letter-spacing: -1.8px;
   background: #CCC;
-  padding: 21px 0 18px;
+  padding: 15px 0 12px;
   cursor: pointer;
 }
 .locate-container .locate-wrap .map-tab-wrap .map-tab:hover,
@@ -925,13 +929,13 @@
   display: block;
 }
 .locate-container .locate-wrap .map-tab-container{
-  min-height: 730px;
+  min-height: 630px;
 }
 .locate-container .locate-wrap .map-tab-area .info-container{
   width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 65px;
+  margin-bottom: 25px;
 }
 .locate-container .locate-wrap .map-tab-area .info-container:nth-last-child(1){
   margin-bottom: 0;
@@ -942,7 +946,7 @@
 .locate-container .locate-wrap .map-tab-area .info-container .locate-name .name{
   color: #0923AC;
   text-align: left;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'yg-jalnan';
   font-weight: 700;
   line-height: 200%;
@@ -972,7 +976,7 @@
 .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p{
   text-align: center;
   color: #333;
-  font-size: 28px;
+  font-size: 22px;
   font-family: 'yg-jalnan';
   font-weight: 700;
   line-height: 240%;
@@ -985,7 +989,7 @@
 }
 .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .addr-wrap .addr{
   color: #333;
-  font-size: 19px;
+  font-size: 17px;
   font-family: Noto Sans KR;
   line-height: 40px;
   letter-spacing: -1.8px;
@@ -1058,30 +1062,30 @@
   }
 
   .area3 .three-keywords .keyword .title {
-    font-size: 45px;
+    font-size: 27px;
   }
 
   .area3 .three-keywords .keyword .text {
-    font-size: 20px;
+    font-size: 13px;
   }
 
   .area3 .three-keywords {
     padding: 0 20px;
-    margin: 0 auto 200px auto;
-
+    margin: 0 auto -90px auto;
+    bottom: 200px;
   }
   .area3 .click-btn p {
-    font-size: 30px;
-    padding: 16px 72px;
+    font-size: 24px;
+    padding: 16px 57px;
   }
   .area3 .tab-container{
-    margin: 60px auto 100px;
+    margin: 50px auto 100px;
   }
   .work-info {
     margin: 90px auto 0;
   }
   .work-info .work .text-wrap{
-    height: 200px;
+    height: 160px;
   }
   .work-info .work .text{
     font-size: 18px;
@@ -1090,7 +1094,7 @@
     font-size: 30px;
   }
   .tax-wrap .work-tit{
-    margin: 80px auto 100px;
+    margin: 80px auto 50px;
   }
   .tab-container .pay-wrap .chart-container .chart1 .title{
     font-size: 28px;
@@ -1126,7 +1130,7 @@
     padding: 130px 0;
   }
   .target-wrap .title{
-    margin: 0 auto 70px;
+    margin: 0 auto 50px;
   }
   .target-wrap .chart .item li {
     font-size: 20px;
@@ -1152,19 +1156,20 @@
     padding: 17px 0 14px;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .locate-name .name {
-    font-size: 25px;
+    font-size: 22px;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag {
     width: 30%;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p{
-    font-size: 21px;
+    font-size: 19px;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .addr-wrap {
     width: 70%;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .addr-wrap .addr {
-    font-size: 18px;
+    font-size: 15px;
+    line-height: 25px;
   }
 }
 @media (max-width: 1024px) {
@@ -1202,7 +1207,7 @@
     font-size: 22px;
   }
   .area2 {
-    padding: 160px 0;
+    padding: 80px 0;
   }
   .area2 .row:nth-child(1) {
     margin-bottom: 90px;
@@ -1211,7 +1216,9 @@
     padding: 10px 45px 12px;
     font-size: 22px;
   }
-
+  .area3 .geni-wrap{
+    margin: 100px auto 70px;
+  }
   .area3 .geni-wrap .text-wrap .sub-title1 {
     font-size: 40px;
   }
@@ -1224,25 +1231,12 @@
   .area3 .geni-wrap {
     gap: 60px;
   }
-
-  .area3 .three-keywords .keyword .title {
-    font-size: 36px;
-  }
-
-  .area3 .three-keywords .keyword {
-    padding: 30px;
-    gap: 19px;
-  }
-
-  .area3 .three-keywords .keyword .text {
-    font-size: 16px;
-  }
   .area3 .click-btn p {
-    font-size: 26px;
-    padding: 16px 52px;
+    font-size: 20px;
+    padding: 16px 49px;
   }
   .area3 .service-wrap .title{
-    font-size: 28px;
+    font-size: 21px;
   }
   .area3 .service-wrap .service .sub-tit1 {
     font-size: 20px;
@@ -1262,6 +1256,9 @@
   .area3 .service-wrap .service img {
     width: 200px;
   }
+  .work-info{
+    margin: 50px auto 0;
+  }
   .work-info .work .text-wrap {
     height: 170px;
   }
@@ -1273,6 +1270,9 @@
   }
   .work-info .work .text strong {
     font-size: 25px;
+  }
+  .work-info .work .text-wrap {
+    height: 120px;
   }
   .tab-container .pay-wrap .chart-container .chart1 .title {
     font-size: 25px;
@@ -1306,10 +1306,11 @@
     font-size: 18px;
   }
   .tab-container .pay-wrap .chart-container .icon2{
-    margin: 80px auto;
+    margin: 40px auto;
+    width: 35px;
   }
   .tab-container .pay-wrap .chart-container .txt{
-    font-size: 50px;
+    font-size: 34px;
   }
   .tab-container .welfare-txt{
     font-size: 24px;
@@ -1322,16 +1323,19 @@
     margin-bottom: 40px;
   }
   .tab-container .vision-wrap .tit{
-    font-size: 32px;
+    font-size: 23px;
   }
   .tab-container .vision-wrap .grid-wrap{
-    margin: 80px auto 0;
+    margin: 40px auto 0;
   }
   .tab-container .vision-wrap .grid-wrap .item{
-    font-size: 19px;
+    font-size: 15px;
+  }
+  .tab-container .vision-wrap .grid-wrap .item:nth-child(2) {
+    padding-top: 35px;
   }
   .tab-container .vision-wrap .bottom{
-    font-size: 33px;
+    font-size: 25px;
   }
 
   .target-wrap .chart .item .title-wrap{
@@ -1351,7 +1355,7 @@
     padding: 130px 0;
   }
   .career-wrap .title{
-    margin: 0 auto 70px;
+    margin: 0 auto 50px;
   }
   .video-wrap .title {
     margin: 0 auto 50px;
@@ -1389,6 +1393,12 @@
   .locate-container .locate-wrap .map-flex .map-wrap img {
     position: relative;
     bottom: 0px;
+  }
+  .area3 .three-keywords {
+    padding: 0 20px;
+    margin: 0 auto -60px auto;
+    bottom: 110px;
+    max-width: 533px;
   }
 }
 @media (max-width: 768px) {
@@ -1508,6 +1518,8 @@
   .area3 .three-keywords {
     gap: 8px;
     margin: 0 auto 100px auto;
+    bottom: 0;
+    left: 0;
   }
 
   .area3 .three-keywords .keyword {
@@ -1595,7 +1607,7 @@
     margin: 35px auto 40px;
   }
   .tab-container .pay-wrap .chart-container {
-    padding: 40px 0;
+    padding: 0px 0;
     margin: 40px 0;
   }
 
@@ -1659,9 +1671,11 @@
   }
 
   .tab-container .vision-wrap .tit {
-    font-size: 22px;
+    font-size: 19px;
   }
-
+  .target-wrap {
+    padding: 60px 0 0;
+  }
   .tab-container .vision-wrap .grid-wrap .item {
     width: calc(50% - 10px);
     padding: 35px 10px;
@@ -1712,13 +1726,16 @@
   }
 
   .career-wrap {
-    padding: 90px 0;
+    padding: 40px 0;
   }
 
   .video-wrap {
-    padding: 90px 0;
+    padding: 40px 0;
   }
+  .locate-container{
+    padding: 40px 0;
 
+  }
   .video-wrap .txt {
     color: #000;
     font-size: 24px;
@@ -1737,13 +1754,13 @@
     margin-top: 20px;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .locate-name .name {
-    font-size: 22px;
-  }
-  .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p {
     font-size: 20px;
   }
+  .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p {
+    font-size: 19px;
+  }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .addr-wrap .addr {
-    font-size: 17px;
+    font-size: 14px;
   }
   .locate-container .locate-wrap .map-tab-container {
     min-height: 500px;
@@ -1888,7 +1905,7 @@
   }
 
   .tab-container .vision-wrap .grid-wrap {
-    margin: 50px auto 0;
+    margin: 20px auto 0;
   }
 
   .tab-container .vision-wrap .grid-wrap .item {
@@ -1951,7 +1968,7 @@
     font-size:17px;
   }
   .area3 .three-keywords {
-    margin: 0 auto 80px auto;
+    margin: 0 auto 70px auto;
   }
   .area3 .three-keywords .keyword .title {
     font-size: 24px;
