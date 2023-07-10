@@ -70,7 +70,7 @@ if ($type == 'modify') {
         </div>
         <div class="btn-wrap">
             <input type="submit" class="submit" value="확인" required />
-            <a href="locate_form.php                                                            " class="go-back">목록</a>
+            <a href="locate_list.php?menu=11" class="go-back">목록</a>
         </div>
     </form>
 </div>

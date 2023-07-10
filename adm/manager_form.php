@@ -50,7 +50,7 @@
             </div>
                 <div class="btn-wrap">
                     <input type="submit" class="submit" value="확인" />
-                    <a href="./manager_list.php" class="go-back">목록</a>
+                    <a href="./manager_list.php?menu=4" class="go-back">목록</a>
                 </div>
         </form>
     </div>

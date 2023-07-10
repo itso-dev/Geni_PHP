@@ -71,7 +71,7 @@ if (isset($_FILES['excelFile']) && $_FILES['excelFile']['name'] != "") {
 
         echo "<pre>";
         if($i == 1){
-            if($allData[1][0] == '생성일' && $allData[1][1] == '지원자 명' && $allData[1][2] == '연락처' && $allData[1][3] == '출생년도' && $allData[1][4] == '지원자 거주지' && $allData[1][5] == '희망 근무지' && $allData[1][6] == '추천인 정보' && $allData[1][7] == '추천인 상세' && $allData[1][8] == '결과' && $allData[1][9] == '아이피'){
+            if($allData[1][0] == '생성일' && $allData[1][1] == '지원자 명' && $allData[1][2] == '연락처' && $allData[1][3] == '출생년도' && $allData[1][4] == '지원자 거주지' && $allData[1][5] == '희망 근무지' && $allData[1][6] == '추천인 정보' && $allData[1][7] == '추천인 상세' && $allData[1][8] == '인재풀 등록' && $allData[1][9] == '결과' && $allData[1][10] == '아이피'){
             }
             else{
                 echo "<script type='text/javascript'>";
@@ -97,18 +97,18 @@ if (isset($_FILES['excelFile']) && $_FILES['excelFile']['name'] != "") {
                     $allData[$i][5],
                     $allData[$i][6],
                     $allData[$i][7],
-                    0,
                     $allData[$i][8],
-                    0,
-                    0,
                     $allData[$i][9],
+                    0,
+                    0,
+                    $allData[$i][10],
                     $allData[$i][0]
                 ]
             );
         }
         echo "</pre>";
         echo "<script type='text/javascript'>";
-//        echo "alert('등록을 완료했습니다.'); location.href='../apply_list.php?menu=1'";
+        echo "alert('등록을 완료했습니다.'); location.href='../apply_list.php?menu=1'";
         echo "</script>";
     }
 

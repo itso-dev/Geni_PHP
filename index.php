@@ -24,7 +24,7 @@ $db_conn->prepare($view_sql)->execute(
 <link rel="stylesheet" type="text/css" href="css/index.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/reset.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 
@@ -44,10 +44,10 @@ while ($popup = $popup_stt->fetch()) {
     $arr[] = $popup['id'];
     ?>
     <div class="layer-popup pc"
-        style="display: block; width: 80%; max-width: <?= $popup['width'] ?>px; height: <?= $popup['height'] ?>px; top: 10%; left: 5%; z-index: <?= $z_index ?>;">
+         style="display: block; width: 80%; max-width: <?= $popup['width'] ?>px; height: <?= $popup['height'] ?>px; top: 10%; left: 5%; z-index: <?= $z_index ?>;">
         <div id="agreePopup<?= $popup['id'] ?>" class="agree-popup-frame">
             <img src="data/popup/<?= $popup['file_name'] ?>" style=" height:calc(<?= $popup['height'] ?>px - 36px);"
-                alt="<?= $popup['popup_name'] ?>">
+                 alt="<?= $popup['popup_name'] ?>">
             <div class="show-chk-wrap">
                 <a href="javascript:todayClose('agreePopup<?= $popup['id'] ?>', 1);" class="today-x-btn">오늘하루닫기</a>
                 <a class="close-popup x-btn">닫기</a>
@@ -56,10 +56,10 @@ while ($popup = $popup_stt->fetch()) {
     </div>
 
     <div class="layer-popup mobile"
-        style="display: block; width: 80%; max-width: <?= $popup['width_mobile'] ?>px; height: <?= $popup['height_mobile'] ?>px; top: 10%; left: 10%; z-index: <?= $z_index ?>;">
+         style="display: block; width: 80%; max-width: <?= $popup['width_mobile'] ?>px; height: <?= $popup['height_mobile'] ?>px; top: 10%; left: 10%; z-index: <?= $z_index ?>;">
         <div id="agreePopup_mo<?= $popup['id'] ?>" class="agree-popup-frame">
             <img src="data/popup/<?= $popup['file_name_mobile'] ?>" style=" height:calc(<?= $popup['height'] ?>px - 36px);"
-                alt="<?= $popup['popup_name'] ?>">
+                 alt="<?= $popup['popup_name'] ?>">
             <div class="show-chk-wrap">
                 <a href="javascript:todayClose('agreePopup_mo<?= $popup['id'] ?>', 1);" class="today-x-btn">오늘하루닫기</a>
                 <a class="close-popup x-btn">닫기</a>
@@ -78,9 +78,9 @@ while ($popup = $popup_stt->fetch()) {
     $(document).ready(function () {
         <?
         for ($i = 0; $i < count($arr); $i++) {
-            ?>
-            todayOpen('agreePopup<?= $arr[$i] ?>');
-            todayOpen('agreePopup_mo<?= $arr[$i] ?>');
+        ?>
+        todayOpen('agreePopup<?= $arr[$i] ?>');
+        todayOpen('agreePopup_mo<?= $arr[$i] ?>');
         <? } ?>
         $(".close-popup").click(function () {
             $(this).parent().parent().hide();
@@ -131,7 +131,7 @@ while ($popup = $popup_stt->fetch()) {
     }
 </script>
 <div class="floating-header">
-    <img id="header-logo" class="logo" src="img/main/logo-white.png">
+    <img onclick="window.open('https://www.imforyou.co.kr/ ')" style="cursor: pointer;" id="header-logo" class="logo" src="img/main/logo-white.png">
     <span class="title">지니 지원</span>
     <a class="link" target="_blank" href="https://www.imforyou.co.kr/">아이.엠 소개</a>
 </div>
@@ -331,7 +331,6 @@ while ($popup = $popup_stt->fetch()) {
                     </div>
                 </div>
                 <div class="mobile">
-                    <img class="pay-img" src="img/main/tab-pay-img.png">
                     <div class="chart-container">
                         <div class="chart1">
                             <div class="title">

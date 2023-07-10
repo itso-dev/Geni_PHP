@@ -17,13 +17,14 @@ include_once('./default.php');
     <h4>알림 문자 설정</h4>
     <form name="sms_form" id="sms_form" method="post" action="./ajax/sms_setting.php">
         <div class="form-container">
-            <div class="input-container">
-                <p class="label">알림 문자를 받을 전화번호를 입력하세요.</p>
-                <input type="text" name="phone" class="form-control" placeholder="반드시 010-0000-0000 의 형태로 입력해주세요." value="<?= $row[1] ?>" required>
-            </div>
+<!--            <div class="input-container">-->
+<!--                <p class="label">알림 문자를 받을 전화번호를 입력하세요.</p>-->
+<!--                <input type="text" name="phone" class="form-control" placeholder="반드시 010-0000-0000 의 형태로 입력해주세요." value="--><?//= $row[1] ?><!--" required>-->
+<!--            </div>-->
             <div class="input-container">
                 <p class="label">보내고 싶은 문자 내용을 작성해 주세요.</p>
                 <textarea name="desc" class="form-control"><?= $row[2] ?></textarea>
+                <small>글 내용 앞에는 "(지원자 이름)님." 이 먼저 나옵니다.</small>
             </div>
             <div class="input-container">
                 <input type="submit" value="등록">

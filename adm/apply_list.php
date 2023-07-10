@@ -110,6 +110,7 @@
         recommender like '%$stx%' OR 
         recommender_name like '%$stx%' OR 
         birth_date like '%$stx%' OR 
+        agree like '%$stx%' OR 
         writer_ip like '%$stx%' )";
     }
 
@@ -243,6 +244,7 @@
                                     <th scope="col" style="width: 210px;">희망 근무지</th>
                                     <th scope="col" style="width: 250px;">추천인 정보</th>
                                     <th scope="col" style="width: 250px;">추천인 상세</th>
+                                    <th scope="col" style="width: 410px;">인재풀 등록</th>
                                      <th scope="col" style="width: 150px;">상담내역</th>
                                     <th scope="col" style="width: 159px;">결과</th>
                                     <th scope="col" style="width: 159px;">담당자</th>
@@ -269,7 +271,7 @@
                                     <td><?=$list_row['location']?></td>
                                     <td><?=$list_row['recommender']?> </td>
                                     <td><?=$list_row['recommender_name']?></td>
-
+                                    <td><?=$list_row['agree']?></td>
                                     <td>
                                         <button type="button" class="button button4" style="width: 110px;" onclick="openCounselModal(<?= $list_row['id'] ?>);">상담내역</button>
                                     </td>

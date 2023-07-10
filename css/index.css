@@ -1827,6 +1827,12 @@
   .target-wrap .chart .item:nth-child(1){
     display: none;
   }
+  .tab-container .pay-wrap .chart-container .chart2-wrap{
+    border: 1px solid #FF0000;
+    padding: 3%;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1937,11 +1943,14 @@
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap:after{
     display: none;
   }
+  .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag{
+    width: 25%;
+  }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p{
     text-align: left;
   }
   .locate-container .locate-wrap .map-tab-area .info-container .info-wrap .item .tag p {
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: -1px;
   }
   .locate-container .locate-wrap .map-tab-container {
@@ -1986,5 +1995,49 @@
   .area3 .three-keywords .keyword:nth-child(1) .text {
     position: relative;
     bottom: 0px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1{
+    width: 250px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1 .title{
+    font-size: 17px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1 .flex .item .date {
+    font-size: 13px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1 .flex .item {
+    padding: 10px 0 10px;
+    text-align: center;
+  }
+  .tab-container .pay-wrap .chart-container .icon1 {
+    margin: 20px auto 25px;
+    width: 20px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1-text {
+    font-size: 11px;
+    max-width: 250px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1 .flex .item .pay strong {
+    font-size: 17px;
+    margin: 0 3px;
+  }
+  .tab-container .pay-wrap .chart-container .chart1 .flex .item .pay {
+    font-size: 15px;
+  }
+  .tab-container .pay-wrap .chart-container .chart2-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .tab-container .pay-wrap .chart-container .chart2-wrap .chart2 .title {
+    font-size: 15px;
+  }
+  .tab-container .pay-wrap .chart-container .chart2-wrap .chart2 .info {
+    font-size: 13px;
+  }
+  .tab-container .pay-wrap .chart-container .chart2-wrap .chart2 .info .sub {
+    font-size: 13px;
+  }
+  .tab-container .pay-wrap .chart-container .chart2-wrap .chart2 .info {
+    padding: 8px 0 13px;
   }
 }

@@ -16,6 +16,8 @@
            where
       id = 1";
 
+        echo $modify_sql;
+
       $updateStmt = $db_conn->prepare($modify_sql);
       $updateStmt->execute();
 

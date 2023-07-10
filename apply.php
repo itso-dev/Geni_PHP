@@ -20,7 +20,9 @@ function get_client_ip()
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
     opcache_reset();
+
 }
+
 ?>
 <title>i.M 지니 입사지원</title>
 
@@ -28,9 +30,8 @@ function get_client_ip()
 <link rel="stylesheet" type="text/css" href="css/reset.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf0d90mAAAAALdfOB6-x61SMRrm8AlEvzUwMtK-"></script>
+
 
 <script>
     let openSelect = false;
@@ -85,6 +86,9 @@ function get_client_ip()
             cb.checked = false;
         })
         element.checked = true;
+        if(name == 'location'){
+            $(".locationYn").val('1');
+        }
     }
 
     /* select 클릭 시 선택 & 값 변경 */
@@ -124,7 +128,7 @@ function get_client_ip()
         </header>
 
         <section id="apply-container">
-            <form name="contact_form" id="contact_form" method="post" action="apply_write.php">
+            <form name="contact_form" id="contact_form" method="post" action="apply_write.php" onsubmit='return frmSubmit();'>
                 <input type="hidden" name="writer_ip" value="<?= get_client_ip() ?>" />
                 <article class="apply-page max">
                     <p class="title">i.M 정규직 드라이버<br class="mo-br768" /> <span>'지니’ 입사 지원</span></p>
@@ -175,7 +179,7 @@ function get_client_ip()
                         <div class="field-input-text-wrap">
                             <p class="field-text">*띄어쓰기 없이 정확하게 입력해 주세요.</p>
                             <div class="input-wrap">
-                                <input type="text" name="name" oninput="onInput(this, 'name')"
+                                <input type="text" name="name" oninput="onInput(this, 'name')" minlength="2"
                                     onchange="onInput(this, 'name')" class="text-input" placeholder="나지니" required />
                             </div>
                         </div>
@@ -185,7 +189,7 @@ function get_client_ip()
                         <div class="field-input-text-wrap">
                             <p class="field-text">*숫자만 입력해 주세요.</p>
                             <div class="input-wrap">
-                                <input type="number" name="phone" oninput="onInput(this, 'phone')"
+                                <input type="number" name="phone" oninput="onInput(this, 'phone')" pattern=".{11,11}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                                     onchange="onInput(this, 'phone')" class="text-input" placeholder="01012345678"
                                     required />
                             </div>
@@ -196,8 +200,8 @@ function get_client_ip()
                         <div class="field-input-text-wrap">
                             <p class="field-text">*숫자만 입력해 주세요.</p>
                             <div class="input-wrap">
-                                <input type="number" name="birth_date" oninput="onInput(this, 'birth')"
-                                    onchange="onInput(this, 'birth')" class="text-input" placeholder="1990" />
+                                <input type="number" name="birth_date" oninput="onInput(this, 'birth')" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                    onchange="onInput(this, 'birth')" class="text-input" placeholder="1990" required />
                             </div>
                         </div>
                     </div>
@@ -211,7 +215,7 @@ function get_client_ip()
                                 <div class="address-input">
                                     <input type="text" id="address1" name="address1" oninput="onInput(this, 'address')"
                                         onchange="onInput(this, 'address')" class="text-input"
-                                        placeholder="지번 또는 도로명 주소" />
+                                        placeholder="지번 또는 도로명 주소" required />
                                     <img src="img/apply/confirm.png" class="confirm" />
                                 </div>
                             </div>
@@ -223,17 +227,18 @@ function get_client_ip()
                         <p class="field-title">5. 희망 근무지<span>(필수)</span><b class="star">*</b></p>
                         <div class="field-input-text-wrap">
                             <p class="field-text">*희망 근무지 한 곳을 선택해 주세요.</p>
+                            <input type="hidden" name="locationYn" class="locationYn" required />
                             <div class="county-wrap">
                                 <div class="county">동부</div>
                                 <div class="area-wrap">
                                     <label class="area">
                                         <p>강동</p>
-                                        <input type="checkbox" name="location" value="강동"
+                                        <input type="checkbox" name="location" value="동부 - 강동"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>송파</p>
-                                        <input type="checkbox" name="location" value="송파"
+                                        <input type="checkbox" name="location" value="동부 - 송파"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                 </div>
@@ -243,22 +248,22 @@ function get_client_ip()
                                 <div class="area-wrap">
                                     <label class="area">
                                         <p>강서</p>
-                                        <input type="checkbox" name="location" value="강서"
+                                        <input type="checkbox" name="location" value="서부 - 강서"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>마포</p>
-                                        <input type="checkbox" name="location" value="마포"
+                                        <input type="checkbox" name="location" value="서부 - 마포"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>은평</p>
-                                        <input type="checkbox" name="location" value="은평"
+                                        <input type="checkbox" name="location" value="서부 - 은평"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>충정로</p>
-                                        <input type="checkbox" name="location" value="충정로"
+                                        <input type="checkbox" name="location" value="서부 - 충정로"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                 </div>
@@ -268,7 +273,7 @@ function get_client_ip()
                                 <div class="area-wrap">
                                     <label class="area">
                                         <p>성동</p>
-                                        <input type="checkbox" name="location" value="성동"
+                                        <input type="checkbox" name="location" value="중부 - 성동"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                 </div>
@@ -278,17 +283,17 @@ function get_client_ip()
                                 <div class="area-wrap">
                                     <label class="area">
                                         <p>구로</p>
-                                        <input type="checkbox" name="location" value="구로"
+                                        <input type="checkbox" name="location" value="남부 - 구로"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>동작</p>
-                                        <input type="checkbox" name="location" value="동작"
+                                        <input type="checkbox" name="location" value="남부 - 동작"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                     <label class="area">
                                         <p>영등포</p>
-                                        <input type="checkbox" name="location" value="영등포"
+                                        <input type="checkbox" name="location" value="남부 - 영등포"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                 </div>
@@ -298,7 +303,7 @@ function get_client_ip()
                                 <div class="area-wrap">
                                     <label class="area">
                                         <p>도봉</p>
-                                        <input type="checkbox" name="location" value="도봉"
+                                        <input type="checkbox" name="location" value="북부 - 도봉"
                                             onclick="checkOnlyOne(this, 'location')" />
                                     </label>
                                 </div>
@@ -328,7 +333,7 @@ function get_client_ip()
                                 </div>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="recommender_name" class="text-input" placeholder="성명 또는 상호명" />
+                                <input type="text" name="recommender_name" class="text-input" placeholder="성명 또는 상호명" minlength="2" />
                             </div>
                         </div>
                     </div>
@@ -354,22 +359,56 @@ function get_client_ip()
                             onclick="checkOnlyOne(this, 'agree')" />
                         <p>동의하지 않습니다.</p>
                     </label>
-
-                    <input class="submit-btn" type="submit" value="제출하기" class="g-recaptcha" data-sitekey="6Lf0d90mAAAAALdfOB6-x61SMRrm8AlEvzUwMtK-" data-callback='frmSubmit' data-action='submit'  />
+                    <input type="hidden" id="g-recaptcha" name="g-recaptcha">
+                    <input class="submit-btn" type="submit" value="제출하기" class="g-recaptcha" data-sitekey="6LeIUPcmAAAAAKknvdvB6rUxzAeGwrQrm3tGMnrV" data-callback='frmSubmit' data-action='submit'  />
                 </article>
             </form>
         </section>
     </div>
 
+    <script src='https://www.google.com/recaptcha/api.js?render=6LeIUPcmAAAAAKknvdvB6rUxzAeGwrQrm3tGMnrV'></script>
     <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LeIUPcmAAAAAKknvdvB6rUxzAeGwrQrm3tGMnrV', {action: 'submit'}).then(function(token) {
+                document.getElementById('g-recaptcha').value = token;
+            });
+        });
+
+        window.onpageshow = function(event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+                // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+                location.href = "/";
+            }
+        }
+
         function frmSubmit(){
             if(!$("input[name=name]").val()) {
                 alert("이름을 입력해주세요");
                 return false;
             }
+            if(!$("input[name=locationYn]").val()) {
+                alert("희망 근무지를 체크해주세요");
+                return false;
+            }
             if(!$("input[name=phone]").val()){
                 alert("상담하시려는 분의 연락처를 입력해주세요");
                 return false;
+            }
+            if($("input[name=birth_date]").val().length < 4 ){
+                alert("출생년도 4자리를 정확히 입력해주세요");
+                $("input[name=birth_date]").focus();
+                return false;
+            }
+            if($("input[name=phone]").val().length < 11 ){
+                alert("연락처 번호 11자리를 정확히 입력해주세요")
+                $("input[name=phone]").focus();
+                return false;
+            }
+            if($("input[name=recommender]").val() != "(선택)"){
+                if(!$("input[name=recommender_name]").val()){
+                    alert("추천인의 성명 또는 상호명을 입력해주세요");
+                    return false;
+                }
             }
             document.contact_form.submit()
         }
