@@ -16,6 +16,12 @@
   margin: 0 auto;
   width: 100%;
 }
+.pc{
+  display: revert;
+}
+.mobile{
+  display: none;
+}
 
 /* 헤더 */
 #apply-header {
@@ -66,7 +72,7 @@
 }
 #apply-container .apply-page .sub-title {
   width: 100%;
-  margin-top: 60px;
+  margin-top: 10px;
   color: #333;
   text-align: center;
   font-size: 30px;
@@ -448,11 +454,395 @@
   height: 100%;
   min-height: calc(100vh - 100px);
 }
+#apply-container .locate-tab{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+#apply-container .locate-tab .tab{
+  background: #CCCCCC;
+  color: #FFF;
+  text-align: center;
+  font-family: Noto Sans KR;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%; /* 27.5px */
+  letter-spacing: -1.1px;
+  padding: 7px 40px;
+  box-sizing: border-box;
+  border-radius: 50px;
+  cursor: pointer;
+}
+#apply-container .locate-tab .tab.active{
+  background: #0923AC;
+}
+#apply-container .locate-tab-container{
+  width: 100%;
+}
+#apply-container .locate-tab-container .tab-wrap{
+  border: 1px solid #DDD;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+#apply-container .locate-tab-container .tab-wrap:nth-child(1){
+  display: block;
+}
+#apply-container .locate-tab-container table{
+  width: 100%;
+  border-collapse: collapse;
+}
+#apply-container .locate-tab-container table thead td{
+  background: #EEE;
+  color: #888;
+  text-align: center;
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  padding: 9px 5px;
+  box-sizing: border-box;
+}
+#apply-container .locate-tab-container table tbody tr{
+  border-bottom: 1px solid #DDD;
+}
+#apply-container .locate-tab-container table tbody tr:nth-last-child(1){
+  border-bottom: none;
+}
+#apply-container .locate-tab-container table tbody tr td{
+  color: #333;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1px;
+  padding: 9px 19px;
+  box-sizing: border-box;
+  text-align: left;
+  border-right: 1px solid #DDD;
+}
+#apply-container .locate-tab-container table tbody tr td input{
+  width: 20px;
+  height: 20px;
+}
+#apply-container .locate-tab-container table tbody tr td .readonly{
+  display: none;
+}
+#apply-container .locate-tab-container table tbody tr td.center{
+  text-align: center;
+}
+#apply-container .locate-tab-container table tbody tr td:nth-last-child(1){
+  border-right: none;
+}
 
+
+/* 면접 추가 */
+.interview-container{
+  display: flex;
+  width: 100%;
+  max-width: 1250px;
+}
+.interview-container .item{
+  padding: 40px 25px;
+  box-sizing: border-box;
+}
+.interview-container .item .label{
+  color: #999;
+  font-family: Noto Sans KR;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%; /* 30px */
+  letter-spacing: -1.2px;
+  margin-bottom: 40px;
+}
+.interview-container .info-wrap{
+  width: 25%;
+}
+.interview-container .info-wrap .label-s{
+  color: #777;
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 14px */
+  letter-spacing: -0.7px;
+  padding: 7px 20px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: #F5F5F5;
+  border-radius: 20px;
+}
+.interview-container .info-wrap .val{
+  color: #333;
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  line-height: 25px;
+}
+.interview-container .calender-wrap{
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  width: 45%;
+}
+
+.interview-container .calender-wrap .calender-area {
+  background-color : white;
+  height: auto;
+  padding: 0 20px;
+  margin-right: auto;
+  border-radius:5px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 500px;
+}
+.interview-container .calender-wrap .Calendar {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+.interview-container .calender-wrap td {
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+.interview-container .calender-wrap .Calendar .thead td{
+  padding: 0px 0 20px;
+  text-align: left;
+}
+.interview-container .calender-wrap .Calendar .thead .date-wrap{
+  color: #333;
+  font-family: Noto Sans KR;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: inline-block;
+}
+.interview-container .calender-wrap .Calendar .btn-wrap{
+  float: right;
+}
+.interview-container .calender-wrap .Calendar .btn{
+  width: 13px;
+  margin: 0 10px;
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+}
+.interview-container .calender-wrap .Calendar .week{
+  background: #f5f5f5;
+  border-radius: 30px;
+}
+.interview-container .calender-wrap .Calendar .week td{
+  font-size: 18px;
+  padding: 7px 0;
+  color: #777;
+}
+.interview-container .calender-wrap .Calendar .week td:nth-child(1){
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.interview-container .calender-wrap .Calendar .week td:nth-last-child(1){
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.interview-container .calender-wrap .Calendar>thead>tr:first-child>td {
+  font-family: 'Questrial', sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.interview-container .calender-wrap .Calendar>thead>tr:last-child>td {
+  font-family: 'Questrial', sans-serif;
+  font-weight: 600;
+}
+
+.interview-container .calender-wrap .Calendar>tbody>tr>td>p {
+  font-family: 'Montserrat', sans-serif;
+  height: 40px;
+  width: 40px;
+  border-radius: 45px;
+  transition-duration: .2s;
+  line-height: 45px;
+  display: inline-block;
+  text-align: center;
+  font-size: 21px;
+}
+.interview-container .calender-wrap .Calendar>tbody>tr>td .soundOnly{
+  display: none;
+}
+.interview-container .calender-wrap .pastDay {
+  color: lightgray;
+}
+.interview-container .calender-wrap .today {
+  background-color: #0923AC;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.interview-container .calender-wrap .futureDay {
+  background-color: #F3F5FB;
+  cursor: pointer;
+
+}
+.interview-container .calender-wrap .futureDay:hover{
+  background:#0923AC;
+  color: #fff;
+}
+
+.interview-container .calender-wrap .futureDay.choiceDay,
+.interview-container .calender-wrap .today.choiceDay {
+  background: #0A174E;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.interview-container .time-wrap{
+  width: 30%;
+}
+.interview-container .time-wrap .time{
+  padding: 20px 25px 20px 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  text-align: left;
+  font-family: Noto Sans KR;
+  font-size: 21.267px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.interview-container .time-wrap .time.chk{
+  cursor: pointer;
+}
+.interview-container .time-wrap .time.chk:hover{
+  border-radius: 10px;
+  background: #0923AC;
+  color: #fff;
+  transition: all 0.5s;
+  border-bottom: 1px solid #0923AC;
+}
+.interview-container .time-wrap .time.block{
+  color: #CCC;
+}
+.interview-container .time-wrap .time.choice{
+  border-radius: 10px;
+  background: #0923AC;
+  color: #fff;
+  transition: all 0.5s;
+  border-bottom: 1px solid #0923AC;
+}
+
+.interview-container .time-wrap .label{
+  margin-bottom: 20px;
+}
+
+.info-box{
+  border-radius: 30px;
+  border: 3px solid #DDD;
+  background: #FFF;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: 50px auto;
+  width: 90%;
+}
+.info-box .inner{
+  max-width: 550px;
+  margin: 0px auto;
+  color: #333;
+  font-family: Noto Sans KR;
+  font-size: 30px;
+  line-height: 170%; /* 51px */
+  letter-spacing: -1.5px;
+}
+.info-box .inner ul{
+  padding-left: 35px;
+}
+.info-box .inner ul li{
+  position: relative;
+}
+.info-box .inner ul li:after{
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: -26px;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 100%;
+}
+.sub-title-bold{
+  color: #333;
+  text-align: center;
+  font-family: Noto Sans KR;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 52.5px */
+  letter-spacing: -1.75px;
+  width: 100%;
+}
+.apply-login{
+  max-width: 800px;
+  width: 90%;
+}
+.login-input{
+  border-radius: 10px;
+  border: 1px solid #DDD;
+  background: #FFF;
+  width: 100%;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  margin-bottom: 150px;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+.login-input::placeholder{
+  color: #BBB;
+}
+.apply-login form{
+  width: 100%;
+  text-align: center;
+}
+.login-submit{
+  max-width: 400px;
+  width: 90%;
+  border-radius: 7px;
+  background: #02167C;
+  margin: 0 auto;
+  display: inline-block;
+  color: #FFF;
+  font-family: S-Core Dream;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 200;
+  letter-spacing: -1.3px;
+  padding: 20px 0;
+}
 @media (max-width: 1480px) {
   #apply-container .apply-page {
     padding: 150px 20px 155px 20px;
   }
+
   #apply-container .apply-page .title {
     font-size: 45px;
     line-height: 110%;
@@ -462,12 +852,15 @@
     font-size: 25px;
     line-height: 145%;
   }
+
   #apply-container .apply-page .terms-title {
     font-size: 35px;
   }
+
   #apply-container .apply-page .terms-box {
     font-size: 15px;
   }
+
   #apply-container .apply-page .field-wrap .field-title {
     font-size: 24px;
     line-height: 110%;
@@ -478,9 +871,11 @@
     line-height: 110%;
     margin: 5px 0 25px 0;
   }
+
   #apply-container .apply-page .field-wrap .field-input-text-wrap {
     margin-left: 24px;
   }
+
   #apply-container .apply-page .field-wrap .input-wrap .address-btn {
     font: 400 20px "Noto Sans KR", sans-serif;
     padding: 18px 34px;
@@ -495,6 +890,7 @@
     font-size: 20px;
     line-height: 115%;
   }
+
   #apply-container .apply-page .field-wrap .select-wrap {
     padding: 20px 30px;
     font-size: 20px;
@@ -505,7 +901,20 @@
     white-space: nowrap;
   }
 }
-
+@media (max-width: 1200px) {
+  .interview-container .item .label{
+    font-size: 20px;
+  }
+  .interview-container .calender-wrap .calender-area{
+    padding: 0;
+  }
+  .interview-container .calender-wrap .Calendar>tbody>tr>td>p {
+    height: 30px;
+    width: 30px;
+    line-height: 34px;
+    font-size: 17px;
+  }
+}
 @media (max-width: 1024px) {
   #apply-container .apply-page .submit-btn {
     font-size: 22px;
@@ -516,9 +925,31 @@
     flex-wrap: wrap;
     gap: 50px;
   }
+  .interview-container .item {
+    padding: 30px 15px;
+  }
+  .interview-container .item .label {
+    font-size: 16px;
+  }
+  .interview-container .info-wrap .val{
+    font-size: 15px;
+  }
+  .interview-container .item .label{
+    margin-bottom: 30px;
+  }
+  .interview-container .time-wrap .time {
+    padding: 15px 10px 15px 20px;
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 768px) {
+  .pc{
+    display: none;
+  }
+  .mobile{
+    display: revert;
+  }
   .mo-br768 {
     display: block !important;
   }
@@ -642,6 +1073,61 @@
     height: 450px;
     overflow-y: scroll;
   }
+  .interview-field{
+    margin-left: 0 !important;
+  }
+  .interview-container {
+    flex-wrap: wrap;
+  }
+  .interview-container .item{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-right: none !important;
+    border-left: none !important;
+  }
+  .interview-container .item:nth-last-child(1){
+    border-bottom: none;
+  }
+  .interview-container .item{
+    padding: 20px 0px;
+  }
+
+  #apply-container .locate-tab{
+    margin:  0 auto 30px;
+    justify-content: center;
+  }
+  #apply-container .locate-tab .tab{
+    font-size: 17px;
+    padding: 12px 0 10px;
+    width: 20%;
+  }
+  #apply-container .locate-tab-container table thead td{
+    font-size: 13px;
+  }
+  #apply-container .locate-tab-container table tbody tr td{
+    font-size: 13px;
+  }
+  .info-box{
+    padding: 30px 20px;
+  }
+  .info-box .inner{
+    font-size: 24px;
+  }
+  #apply-container .apply-page .submit-btn{
+    margin-top: 100px;
+  }
+  .info-box .inner ul li:after {
+    top: 17px;
+  }
+  .login-input{
+    margin-bottom: 50px;
+    padding: 17px 0;
+    font-size: 17px;
+  }
+  .login-submit{
+    font-size: 21px;
+    padding: 15px 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -686,4 +1172,36 @@
     max-width: 123px;
     margin-bottom: 20px;
   }
+  #apply-container .locate-tab .tab{
+    font-size: 15px;
+    padding: 10px 0 8px;
+  }
+  #apply-container .locate-tab-container table tbody tr td {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  #apply-container .locate-tab-container table tbody tr td input {
+    width: 15px;
+    height: 15px;
+  }
+  .sub-title-bold{
+    font-size: 19px;
+  }
+  .info-box .inner {
+    font-size: 15px;
+  }
+  .info-box .inner strong{
+    font-size: 20px;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  #apply-container .apply-page .submit-btn{
+    margin-top: 50px;
+  }
+  .info-box .inner ul li:after {
+    top: 11px;
+  }
+    #apply-container .apply-page {
+      padding: 50px 20px 55px 20px;
+    }
 }

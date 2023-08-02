@@ -232,16 +232,21 @@
                 </div>
                 <div class="page-body">
                     <div class="table-responsive">
-                        <table class="table border-bottom border-top" style="min-width: 1850px;">
+                        <table class="table border-bottom border-top" style="min-width: 2200px;">
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 70px;"><input type="checkbox" class="checkbox-controller" onclick="check_all(this)"></th>
+                                    <th scope="col" style="cursor: pointer; width: 182px;" class="text-left">지원 번호</th>
                                     <th scope="col" style="cursor: pointer; width: 182px;" class="text-left" onclick="sortColumn('sort_date');">지원일</th>
                                     <th scope="col" style="width:202px;cursor: pointer;" onclick="sortColumn('sort_name');">지원자</th>
-                                    <th scope="col" style="width: 192px;">연락처</th>
+                                    <th scope="col" style="width: 220px;">연락처</th>
                                     <th scope="col" style="width: 192px;">출생년도</th>
                                     <th scope="col" style="width: 600px;">지원자 거주지</th>
-                                    <th scope="col" style="width: 210px;">희망 근무지</th>
+                                    <th scope="col" style="width: 250px;">희망 근무지</th>
+                                    <th scope="col" style="width: 300px;">희망 먼접 일자</th>
+                                    <th scope="col" style="width: 210px;">면접 시간</th>
+                                    <th scope="col" style="width: 330px;">면접 일정 변경</th>
+                                    <th scope="col" style="width: 260px;">변경 신청일</th>
                                     <th scope="col" style="width: 250px;">추천인 정보</th>
                                     <th scope="col" style="width: 250px;">추천인 상세</th>
                                     <th scope="col" style="width: 410px;">인재풀 등록</th>
@@ -263,12 +268,17 @@
                                         <label for="chk_0" class="sound_only"></label>
                                         <input type="checkbox" name="chk[]" class="checkbox-list" value="<?= $list_row['id'] ?>" id="chk_">
                                     </td>
+                                    <td><?=$list_row['apply_num']?></td>
                                     <td><?=substr($list_row['write_date'], 0, 10 )?></td>
                                     <td><?=$list_row['name']?></td>
                                     <td><?=$list_row['phone']?></td>
                                     <td><?=$list_row['birth_date']?></td>
                                     <td><?=$list_row['address']?></td>
                                     <td><?=$list_row['location']?></td>
+                                    <td><?=$list_row['apply_date']?></td>
+                                    <td><?=$list_row['apply_time']?></td>
+                                    <td><?=$list_row['apply_modify_yn']?></td>
+                                    <td><?=$list_row['apply_modify_date']?></td>
                                     <td><?=$list_row['recommender']?> </td>
                                     <td><?=$list_row['recommender_name']?></td>
                                     <td><?=$list_row['agree']?></td>

@@ -29,32 +29,50 @@ $phpExcel = new PHPExcel();
 
 $phpExcel->setActiveSheetIndex(0);
 $phpExcel->getActiveSheet()
-    ->setCellValue("A1", "생성일")
-    ->setCellValue("B1", "지원자 명")
-    ->setCellValue("C1", "연락처")
-    ->setCellValue("D1", "출생년도")
-    ->setCellValue("E1", "지원자 거주지")
-    ->setCellValue("F1", "희망 근무지")
-    ->setCellValue("G1", "추천인 정보")
-    ->setCellValue("H1", "추천인 상세")
-    ->setCellValue("I1", "인재풀 등록")
-    ->setCellValue("J1", "결과")
-    ->setCellValue("K1", "아이피");
+    ->setCellValue("A1", "지원 번호")
+    ->setCellValue("B1", "생성일")
+    ->setCellValue("C1", "지원자 명")
+    ->setCellValue("D1", "연락처")
+    ->setCellValue("E1", "출생년도")
+    ->setCellValue("F1", "지원자 거주지")
+    ->setCellValue("G1", "희망 근무지")
+    ->setCellValue("H1", "희망 면접 일자")
+    ->setCellValue("I1", "면접 시간")
+    ->setCellValue("J1", "면접 일정 변경")
+    ->setCellValue("K1", "변경 신청일")
+    ->setCellValue("L1", "추천인 정보")
+    ->setCellValue("M1", "추천인 상세")
+    ->setCellValue("N1", "인재풀 등록")
+    ->setCellValue("O1", "결과")
+    ->setCellValue("P1", "아이피");
 
 $line = 2;
+$recommender = "";
 while($list_row=$list_stt->fetch()) {
+
+    if( $list_row['recommender'] == '선택안함'){
+        $recommender = "";
+    } else{
+        $recommender = $list_row['recommender'];
+    }
+
     $phpExcel->setActiveSheetIndex(0)
-        ->setCellValue("A".$line, $list_row['write_date'])
-        ->setCellValue("B".$line, $list_row['name'])
-        ->setCellValue("C".$line, $list_row['phone'])
-        ->setCellValue("D".$line, $list_row['birth_date'])
-        ->setCellValue("E".$line,$list_row['address'])
-        ->setCellValue("F".$line,$list_row['location'])
-        ->setCellValue("G".$line,$list_row['recommender'])
-        ->setCellValue("H".$line,$list_row['recommender_name'])
-        ->setCellValue("I".$line,$list_row['agree'])
-        ->setCellValue("J".$line,$list_row['result_status'])
-        ->setCellValue("K".$line,$list_row['writer_ip']);
+        ->setCellValue("A".$line, $list_row['apply_num'])
+        ->setCellValue("B".$line, $list_row['write_date'])
+        ->setCellValue("C".$line, $list_row['name'])
+        ->setCellValue("D".$line, $list_row['phone'])
+        ->setCellValue("E".$line, $list_row['birth_date'])
+        ->setCellValue("F".$line,$list_row['address'])
+        ->setCellValue("G".$line,$list_row['location'])
+        ->setCellValue("H".$line,$list_row['apply_date'])
+        ->setCellValue("I".$line,$list_row['apply_time'])
+        ->setCellValue("J".$line,$list_row['apply_modify_yn'])
+        ->setCellValue("K".$line,$list_row['apply_modify_date'])
+        ->setCellValue("L".$line,$recommender)
+        ->setCellValue("M".$line,$list_row['recommender_name'])
+        ->setCellValue("N".$line,$list_row['agree'])
+        ->setCellValue("O".$line,$list_row['result_status'])
+        ->setCellValue("P".$line,$list_row['writer_ip']);
     $line++;
 }
 

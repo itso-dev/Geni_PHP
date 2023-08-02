@@ -71,7 +71,7 @@ if (isset($_FILES['excelFile']) && $_FILES['excelFile']['name'] != "") {
 
         echo "<pre>";
         if($i == 1){
-            if($allData[1][0] == '생성일' && $allData[1][1] == '지원자 명' && $allData[1][2] == '연락처' && $allData[1][3] == '출생년도' && $allData[1][4] == '지원자 거주지' && $allData[1][5] == '희망 근무지' && $allData[1][6] == '추천인 정보' && $allData[1][7] == '추천인 상세' && $allData[1][8] == '인재풀 등록' && $allData[1][9] == '결과' && $allData[1][10] == '아이피'){
+            if($allData[1][0] == '지원 번호' && $allData[1][1] == '생성일' && $allData[1][2] == '지원자 명' && $allData[1][3] == '연락처' && $allData[1][4] == '출생년도' && $allData[1][5] == '지원자 거주지' && $allData[1][6] == '희망 근무지' && $allData[1][7] == '희망 면접 일자' && $allData[1][8] == '면접 시간' && $allData[1][9] == '면접 일정 변경' && $allData[1][10] == '변경 신청일' && $allData[1][11] == '추천인 정보' && $allData[1][12] == '추천인 상세' && $allData[1][13] == '인재풀 등록' && $allData[1][14] == '결과' && $allData[1][15] == '아이피'){
             }
             else{
                 echo "<script type='text/javascript'>";
@@ -83,26 +83,35 @@ if (isset($_FILES['excelFile']) && $_FILES['excelFile']['name'] != "") {
 
 
             $sql = "insert into contact_tbl
-                (name, phone, birth_date, address, location, recommender, recommender_name, agree, result_status,
-                 consult_fk, manager_fk, writer_ip, write_date)
+                (name, phone, birth_date, address, location,
+                 recommender, recommender_name, agree, result_status,
+                 consult_fk, manager_fk, writer_ip, write_date,
+                 apply_num, apply_date, apply_time, apply_modify_yn, apply_modify_date)
             value
-                (?, ?, ?, ?, ?, ?, ?, ?, ?,
-                ?, ?, ?, ?)";
+                (?, ?, ?, ?, ?, 
+                ?, ?, ?, ?,
+                ?, ?, ?, ?,
+                ?, ?, ?, ?, ?)";
             $db_conn->prepare($sql)->execute(
                 [
-                    $allData[$i][1],
                     $allData[$i][2],
                     $allData[$i][3],
                     $allData[$i][4],
                     $allData[$i][5],
                     $allData[$i][6],
+                    $allData[$i][11],
+                    $allData[$i][12],
+                    $allData[$i][13],
+                    $allData[$i][14],
+                    0,
+                    0,
+                    $allData[$i][15],
+                    $allData[$i][1],
+                    $allData[$i][0],
                     $allData[$i][7],
                     $allData[$i][8],
                     $allData[$i][9],
-                    0,
-                    0,
                     $allData[$i][10],
-                    $allData[$i][0]
                 ]
             );
         }

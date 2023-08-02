@@ -1,5 +1,15 @@
 <?php
 include_once('head.php');
+
+$locate  = $_GET['locate'];
+$applyDate  = $_GET['applyDate'];
+$applyNo  = $_GET['applyNo'];
+//문자 내용
+$info_sql = "select * from locate_tbl where name = '$locate'";
+$info_stt=$db_conn->prepare($info_sql);
+$info_stt->execute();
+$row = $info_stt -> fetch();
+
 ?>
 
 
@@ -23,9 +33,29 @@ include_once('head.php');
                         입사 지원이 완료되었습니다.
                     </span>
                 </p>
+                <div class="info-box">
+                    <div class="inner">
+                        <strong>지원정보</strong>
+                        <ul>
+                            <li>지원 번호: <?= $applyNo ?></li>
+                            <li>희망 근무지: <?= $row['name'] ?></li>
+                            <li>위치: <?= $row['address'] ?></li>
+                            <li>교통: <br><?= nl2br($row['subway']) ?></li>
+                            <li>면접: <?= $applyDate ?></li>
+                            <li>
+                                준비 서류:<br>
+                                ① 이력서<br>
+                                ② 운전면허증 사본 (1종 보통 이상)<br>
+                                ③ 운전경력 증명서 (전체 경력)<br>
+                                &nbsp&nbsp*온라인 : 정부24<br>
+                                &nbsp&nbsp*오프라인 : 경찰서 민원실 방문
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="sub-title-bold">문의: (<?= $row['name'] ?>) <?= $row['phone'] ?></p>
                 <p class="sub-title">
-                    채용 담당자가 근무일 기준 3일 이내로 면접 진행 관련해서 안내를 드릴 예정입니다.<br /><br class="mo-br768" />
-                    감사합니다.
+                    지원해주셔서 감사합니다.
                 </p>
                 <div class="submit-btn" onclick="location.href='index.php'">
                     완료

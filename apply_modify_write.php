@@ -38,85 +38,37 @@ window.onpageshow = function(event) {
     } else {
         echo "<script type='text/javascript'>";
         echo "alert('비정상적인 접근입니다.');";
-        echo "location.href = '/apply.php';";
+        echo "location.href = '/';";
         echo "</script>";
         exit;
     }
 
 
-
+    $id = $_POST["id"];
     $posted = date("Y-m-d H:i:s");
-    $name = $_POST["name"];
-    $phone = substr($_POST["phone"], 0, 3) ."-" .substr($_POST["phone"], 3, 4) ."-" .substr($_POST["phone"], 7, 4);
-    $birth_date = $_POST["birth_date"];
-    $address = $_POST["address1"];
     $location = $_POST["location"];
-    $recommender = $_POST["recommender"];
-    $recommender_name = $_POST["recommender_name"];
     $apply_date = substr($_POST["apply_date"], 0 , 10);
     $apply_time = $_POST["apply_time"];
-
     $apply_locate = $_POST["apply_locate"];
     $apply_name = $_POST["apply_name"];
     $apply_address = $_POST["apply_address"];
     $apply_subway = str_replace('<br>', " / " ,$_POST["apply_subway"]);;
 
 
+    //고객 정보
+    $info_sql = "select * from contact_tbl where id = $id";
+    $info_stt=$db_conn->prepare($info_sql);
+    $info_stt->execute();
+    $info = $info_stt -> fetch();
 
-if( isset( $_POST["agree"] ) ){
-        $agree = $_POST["agree"];
-    }else{
-        $agree = "N";
-    }
-
-    if($agree == 1){
-        $agree = "Y";
-    }
-    else{
-        $agree = "N";
-    }
-    if($recommender == '(선택)'){
-        $recommender = "선택안함";
-    }
-    $writer_ip = $_POST["writer_ip"];
-
-    //지원번호 생성
-    $i_date = str_replace('-', '', $apply_date);
-    $no_sql = "select count(*) as cnt from contact_tbl where write_date > curdate();";
-    $no_stt=$db_conn->prepare($no_sql);
-    $no_stt->execute();
-    $contact_cnt = $no_stt -> fetch();
-    $apply_no  = $i_date .sprintf('%02d',$contact_cnt['cnt']);
 
     $yoil = array("일","월","화","수","목","금","토");
+    $time = substr($apply_time, 0, 2);
 
     $apply_date_val = substr($apply_date, 0, 4) ."년 " .substr($apply_date, 5, 2) ."월 " .substr($apply_date, 8, 2) ."일 " .$yoil[date('w', strtotime($apply_date))] ."요일 " .substr($apply_time, 0, 2) ."시";
 
-    $time = substr($apply_time, 0, 2);
 
-    //2주동안 중복 신청자 체크
-    $chk_sql = "SELECT COUNT(*) as cnt FROM contact_tbl WHERE name='$name' and phone='$phone' and write_date BETWEEN DATE_ADD(NOW(),INTERVAL -2 WEEK ) AND NOW()";
-    $chk_stt=$db_conn->prepare($chk_sql);
-    $chk_stt->execute();
-    $cnt = $chk_stt -> fetch();
-
-    if($cnt[0] > 0){
-        echo "<script type='text/javascript'>";
-        echo "alert('2주 이내 중복 지원은 할 수 없습니다.');";
-        echo "dataLayer.push({";
-        echo "'event' : 'apply-true'";
-        echo "});";
-        echo "try{";
-        echo "setTimeout(function(){";
-        echo "location.href = '/apply.php';";
-        echo "}, 500);";
-        echo "}catch(e){}";
-        echo "</script>";
-    }
-    else{
-
-        $msg = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n입사지원이 완료되었습니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n면접 변경은 하단 링크를 통해 변경 가능합니다.\r\nhttps://genie.imforyou.co.kr/apply_modify_login.php\r\n\r\n지원해 주셔서 감사합니다.\r\n
-        ";
+        $msg = "안녕하세요 ".$info['name']."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n면접 일정 변경이 완료되었습니다.\r\n\r\n- 지원 번호: ".$info['apply_num']."\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 변경 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n지원해 주셔서 감사합니다.\r\n";
 
         /**************** 문자전송하기 예제 필독항목 ******************/
         /* 동일내용의 문자내용을 다수에게 동시 전송하실 수 있습니다
@@ -131,8 +83,8 @@ if( isset( $_POST["agree"] ) ){
 
         /****************** 전송정보 설정시작 ****************/
         $_POST['msg'] = $msg; // 메세지 내용 : euc-kr로 치환이 가능한 문자열만 사용하실 수 있습니다. (이모지 사용불가능)
-        $_POST['receiver'] = $phone; // 수신번호
-        $_POST['destination'] = $phone.'| 지니'; // 수신인 %고객명% 치환
+        $_POST['receiver'] = $info['phone']; // 수신번호
+        $_POST['destination'] = $info['phone'].'| 지니'; // 수신인 %고객명% 치환
         $_POST['sender'] ="16887722"; // 발신번호
         $_POST['rdate'] = ''; // 예약일자 - 20161004 : 2016-10-04일기준
         $_POST['rtime'] = ''; // 예약시간 - 1930 : 오후 7시30분
@@ -192,6 +144,7 @@ if( isset( $_POST["agree"] ) ){
         curl_close($oCurl);
 
         $retArr = json_decode($ret); // 결과배열
+// print_r($retArr); // Response 출력 (연동작업시 확인용)
 
         /**** Response 항목 안내 ****
         // result_code : 전송성공유무 (성공:1 / 실패: -100 부터 -999)
@@ -203,16 +156,13 @@ if( isset( $_POST["agree"] ) ){
         /**** Response 예문 끝 ****/
 
 
-
-
-
         //예약 문자
         $rdate = date('Y-m-d',strtotime($apply_date."-1 day"));
 
         $rdate_val = substr($rdate, 0, 4) .substr($rdate, 5, 2) .substr($rdate, 8, 2);
         $time_val = str_replace(':', "" ,$apply_time);;
 
-        $msg2 = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n신청하신 지니 채용 면접이 내일 ".$time."시에 진행 될 예정입니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n준비 서류 서류 지참하셔서 면접 시작 10분 전까지 도착해 주시기 바랍니다.r\n\r\n감사합니다.";
+        $msg2 = "안녕하세요 ".$info['name']."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n신청하신 지니 채용 면접이 내일 ".$time."시에 진행 될 예정입니다.\r\n\r\n- 지원 번호: ".$info['apply_num']."\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n준비 서류 서류 지참하셔서 면접 시작 10분 전까지 도착해 주시기 바랍니다.\r\n\r\n감사합니다.";
 
         /**************** 문자전송하기 예제 필독항목 ******************/
         /* 동일내용의 문자내용을 다수에게 동시 전송하실 수 있습니다
@@ -227,16 +177,16 @@ if( isset( $_POST["agree"] ) ){
 
         /****************** 전송정보 설정시작 ****************/
         $_POST['msg'] = $msg2; // 메세지 내용 : euc-kr로 치환이 가능한 문자열만 사용하실 수 있습니다. (이모지 사용불가능)
-        $_POST['receiver'] = $phone; // 수신번호
-        $_POST['destination'] = '$phone|지니'; // 수신인 %고객명% 치환
+        $_POST['receiver'] = $info['phone']; // 수신번호
+        $_POST['destination'] = $info['phone'].'|지니'; // 수신인 %고객명% 치환
         $_POST['sender'] = "16887722"; // 발신번호
         $_POST['rdate'] = $rdate_val; // 예약일자 - 20161004 : 2016-10-04일기준
         $_POST['rtime'] = '1000'; // 예약시간 - 1930 : 오후 7시30분
         $_POST['testmode_yn'] = ''; // Y 인경우 실제문자 전송X , 자동취소(환불) 처리
         $_POST['subject'] = '[i.M 지니]]'; //  LMS, MMS 제목 (미입력시 본문중 44Byte 또는 엔터 구분자 첫라인)
-// $_POST['image'] = '/tmp/pic_57f358af08cf7_sms_.jpg'; // MMS 이미지 파일 위치 (저장된 경로)
+        // $_POST['image'] = '/tmp/pic_57f358af08cf7_sms_.jpg'; // MMS 이미지 파일 위치 (저장된 경로)
         $_POST['msg_type'] = 'LMS'; //  SMS, LMS, MMS등 메세지 타입을 지정
-// ※ msg_type 미지정시 글자수/그림유무가 판단되어 자동변환됩니다. 단, 개행문자/특수문자등이 2Byte로 처리되어 SMS 가 LMS로 처리될 가능성이 존재하므로 반드시 msg_type을 지정하여 사용하시기 바랍니다.
+        // ※ msg_type 미지정시 글자수/그림유무가 판단되어 자동변환됩니다. 단, 개행문자/특수문자등이 2Byte로 처리되어 SMS 가 LMS로 처리될 가능성이 존재하므로 반드시 msg_type을 지정하여 사용하시기 바랍니다.
         /****************** 전송정보 설정끝 ***************/
 
         $sms['msg'] = stripslashes($_POST['msg']);
@@ -248,7 +198,7 @@ if( isset( $_POST["agree"] ) ){
         $sms['testmode_yn'] = empty($_POST['testmode_yn']) ? '' : $_POST['testmode_yn'];
         $sms['title'] = $_POST['subject'];
         $sms['msg_type'] = $_POST['msg_type'];
-    // 만일 $_FILES 로 직접 Request POST된 파일을 사용하시는 경우 move_uploaded_file 로 저장 후 저장된 경로를 사용하셔야 합니다.
+        // 만일 $_FILES 로 직접 Request POST된 파일을 사용하시는 경우 move_uploaded_file 로 저장 후 저장된 경로를 사용하셔야 합니다.
         if(!empty($_FILES['image']['tmp_name'])) {
             $tmp_filetype = mime_content_type($_FILES['image']['tmp_name']);
             if($tmp_filetype != 'image/png' && $tmp_filetype != 'image/jpg' && $tmp_filetype != 'image/jpeg') $_POST['image'] = '';
@@ -259,7 +209,7 @@ if( isset( $_POST["agree"] ) ){
                 }
             }
         }
-    // 이미지 전송 설정
+        // 이미지 전송 설정
         if(!empty($_POST['image'])) {
             if(file_exists($_POST['image'])) {
                 $tmpFile = explode('/',$_POST['image']);
@@ -288,7 +238,7 @@ if( isset( $_POST["agree"] ) ){
         curl_close($oCurl);
 
         $retArr = json_decode($ret); // 결과배열
-    // print_r($retArr); // Response 출력 (연동작업시 확인용)
+        // print_r($retArr); // Response 출력 (연동작업시 확인용)
         $msg_id = "";
         foreach ($retArr as $key => $val) {
             if ($key == 'msg_id') {
@@ -298,54 +248,82 @@ if( isset( $_POST["agree"] ) ){
 
         /**** Response 예문 끝 ****/
 
-        $sql = "insert into contact_tbl
-            (name, phone, birth_date, address, location, recommender, recommender_name, agree, result_status,
-             consult_fk, manager_fk, writer_ip, write_date, apply_num, apply_date, apply_time, apply_modify_yn, msg_id)
-        value
-            (?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
-        $db_conn->prepare($sql)->execute(
-            [
-                $name,
-                $phone,
-                $birth_date,
-                $address,
-                $location,
-                $recommender,
-                $recommender_name,
-                $agree,
-                '대기',
-                0,
-                0,
-                $writer_ip,
-                $posted,
-                $apply_no,
-                $apply_date,
-                $apply_time,
-                'N',
-                $msg_id
-            ]
-        );
-        $contact_cnt_sql = "insert into contact_log_tbl
-                                  (contact_cnt,  reg_date)
-                             value
-                                  (? ,?)";
+        //기존 예약 취소
+        /**************** 예약취소 예제 필독항목 ******************/
+        /* 예약대기중인 문자를 취소하실 수 있습니다.
+        /* 최대 발송5분전까지만 취소가 가능합니다.
+        /****************** 인증정보 시작 ******************/
+        $sms_url = "https://apis.aligo.in/cancel/"; // 전송요청 URL
+        $sms['user_id'] = "jinmobility"; // SMS 아이디
+        $sms['key'] = "72bsh9eyy1mtat2askdj30czfgjw2jnl";//인증키
+        /****************** 인증정보 끝 ********************/
 
-        $db_conn->prepare($contact_cnt_sql)->execute(
-            [1, $posted]
-        );
+        /****************** 취소정보 설정시작 ****************/
+        $sms['mid'] = $info['msg_id'] ; // 취소할 메세지ID (필수입력)
+        /****************** 취소정보 설정끝 ***************/
+
+        $host_info = explode("/", $sms_url);
+        $port = $host_info[0] == 'https:' ? 443 : 80;
+
+        $oCurl = curl_init();
+        curl_setopt($oCurl, CURLOPT_PORT, $port);
+        curl_setopt($oCurl, CURLOPT_URL, $sms_url);
+        curl_setopt($oCurl, CURLOPT_POST, 1);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, $sms);
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        // CURL 접속이 안되는 경우 CURL 옵션안내를 참조 하셔서 옵션을 출력하여 확인해 주세요.
+        // http://phpdoc.me/manual/kr/function.curl-setopt.php
+        $ret = curl_exec($oCurl);
+        curl_close($oCurl);
+        $retArr = json_decode($ret); // 결과배열
+        // print_r($retArr); - 결과값 출력
+
+        // print_r($retArr); // Response 출력 (연동작업시 확인용)
+
+        /**** Response 항목 안내 ****
+        // result_code : 전송성공유무 (성공:1 / 실패: -100 부터 -999)
+        // message : 실패시 상세사유 내용이 포함됩니다
+        // cancel_date : 취소일자
+        /**** Response 예문 끝 ****/
+
+
+        /*** 에러코드 ****
+        -801 : 메세지ID 미입력
+        -802 : 메세지ID 오류
+        -803 : 예약대기중인 문자 없음
+        -804 : 발송 5분전까지만 취소가능
+        -805 : 전송완료로 취소불가
+        -809 : 기타오류
+        /*****/
+
+
+        $modify_sql = "update contact_tbl
+                       set 
+                  location = '$location',
+                  apply_date = '$apply_date',
+                  apply_time = '$apply_time',
+                  apply_modify_yn = 'Y',
+                  apply_modify_date = '$posted',
+                  msg_id = '$msg_id'
+                       where
+                  id = $id";
+
+
+        $updateStmt = $db_conn->prepare($modify_sql);
+        $updateStmt->execute();
+
 
         echo "<script type='text/javascript'>";
-        echo "dataLayer.push({";
-        echo "'event' : 'apply-false'";
-        echo "});";
+        echo "alert('변경 완료 되었습니다.');";
         echo "try{";
         echo "setTimeout(function(){";
-        echo "location.href = '/apply_completion.php?locate=$location&applyDate=$apply_date_val&applyNo=$apply_no';";
+        echo "location.href = '/apply_completion.php?locate=$location&applyDate=$apply_date_val&applyNo=".$info['apply_num']."';";
         echo "}, 500);";
         echo "}catch(e){}";
         echo "</script>";
-    }
+
 
 ?>

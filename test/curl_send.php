@@ -76,6 +76,12 @@ echo $ret;
 $retArr = json_decode($ret); // 결과배열
 // print_r($retArr); // Response 출력 (연동작업시 확인용)
 
+foreach ($retArr as $key => $val) {
+    if($key == 'msg_id'){
+        echo $val;
+    }
+}
+
 /**** Response 항목 안내 ****
 // result_code : 전송성공유무 (성공:1 / 실패: -100 부터 -999)
 // message : success (성공시) / reserved (예약성공시) / 그외 (실패상세사유가 포함됩니다)

@@ -9,19 +9,21 @@
     $locate_detail = $_POST['locate_detail'];
     $name = $_POST['name'];
     $address = $_POST['address'];
+    $subway = $_POST['subway'];
+    $phone = $_POST['phone'];
 
      //입력
     if($type == 'insert'){
 
           $insert_sql = "insert into locate_tbl
-                              (locate, locate_detail, name,  address, regdate)
+                              (locate, locate_detail, name, address, subway, phone, regdate)
                          value
-                              (?, ?, ?, ?, ?)";
+                              (?, ?, ?, ?, ?, ?, ?)";
 
 
           $db_conn->prepare($insert_sql)->execute(
                [$locate, $locate_detail, $name,
-                   $address, $posted]);
+                   $address, $subway, $phone, $posted]);
 
           echo "<script type='text/javascript'>";
           echo "alert('등록 되었습니다.'); location.href='../locate_list.php?menu=11&'";
@@ -37,6 +39,8 @@
           locate_detail = '$locate_detail',
           name = '$name',
           address = '$address',
+          subway = '$subway',
+          phone = '$phone',
           regdate = '$posted'
                where
           id = $id";

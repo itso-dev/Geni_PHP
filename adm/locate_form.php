@@ -14,6 +14,8 @@ $locate = '';
 $locate_detail = '';
 $name = '';
 $address = '';
+$subway = '';
+$phone = '';
 
 if ($type == 'modify') {
     // 리스트에 출력하기 위한 sql문
@@ -26,7 +28,8 @@ if ($type == 'modify') {
     $locate_detail = $row['locate_detail'];
     $name = $row['name'];
     $address = $row['address'];
-
+    $subway = $row['subway'];
+    $phone = $row['phone'];
 }
 ?>
 
@@ -65,6 +68,16 @@ if ($type == 'modify') {
             <div class="input-wrap">
                 <p class="label-name">주소*</p>
                 <input type="text" name="address" class="form-control" value="<?= $address ?>">
+            </div>
+            <hr>
+            <div class="input-wrap">
+                <p class="label-name">전화번호*</p>
+                <input type="text" name="phone" class="form-control" value="<?= $phone ?>">
+            </div>
+            <hr>
+            <div class="input-wrap">
+                <p class="label-name">인근 지하철역*</p>
+                <textarea name="subway" class="form-control" ><?= $subway ?></textarea>
             </div>
             <hr>
         </div>
