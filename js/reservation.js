@@ -1,12 +1,35 @@
 window.onload = function () {
     buildCalendar();
 }    // 웹 페이지가 로드되면 buildCalendar 실행
-
+$(document).ready(function() {
+    $("input[name=location]").bind( "change", function() {
+        buildCalendar(); // 가져온 JSON 데이터를 인자로 달력 생성 함수 호출
+        $('.time-list').empty();
+    });
+});
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
 let today = new Date();     // 페이지를 로드한 날짜를 저장
 today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
-var start = new Date(today.setDate(today.getDate() + 2));	// 이틀 후
-var end = new Date(today.setDate(today.getDate() + 12));	// 2주 후
+
+
+//금요일일 경우
+if (today.getDay() == 5){
+    var start = new Date(today.setDate(today.getDate() + 4));	// 이틀 후
+    var end = new Date(today.setDate(today.getDate() + 18));
+
+}
+//목요일일 경우
+else if(today.getDay() == 4){
+    var start = new Date(today.setDate(today.getDate() + 4));	// 이틀 후
+    var end = new Date(today.setDate(today.getDate() + 18));
+
+}
+else{
+    var start = new Date(today.setDate(today.getDate() + 2));	// 이틀 후
+    var end = new Date(today.setDate(today.getDate() + 16));
+}
+
+
 
 
 // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
@@ -33,7 +56,6 @@ function buildCalendar() {
 
         let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
 
-
         let newDIV = document.createElement("p");
         newDIV.innerHTML = leftPad(nowDay.getDate());        // 추가한 열에 날짜 입력
         nowColumn.appendChild(newDIV);
@@ -50,7 +72,9 @@ function buildCalendar() {
 //     newDIV.className = "futureDay";
 //     newDIV.onclick = function () { choiceDate(this); }
 // }
-        if (start <= nowDay && nowDay <= end && nowDay.getDay() != 5 && nowDay.getDay() != 6 && nowDay.getDay() != 0){
+        if (start <= nowDay &&  end >= nowDay && nowDay.getDay() != 5 && nowDay.getDay() != 6 && nowDay.getDay() != 0){
+
+
             newDIV.className = "futureDay";
 
             var value = "<span class='soundOnly'>"+nowDay+"</span>"
@@ -68,7 +92,6 @@ function buildCalendar() {
 
     }
 }
-
 //같은 날짜 비교
 const isSameDay = (target1, target2) => {
     return target1.getFullYear() === target2.getFullYear() &&
@@ -94,7 +117,6 @@ function choiceDate(newDIV) {
         // 선택된 날짜에 "choiceDay" class 추가
         $("input[name=apply_date]").val(dateFormat(chkDate));
         var locate = $("input[name=locationYn]").val();
-
 
         $.ajax({
             type: 'post',

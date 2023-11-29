@@ -690,7 +690,6 @@ if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])){
 
         });
 
-
         function locateChk(element, locate, name, address) {
             $("input[name=location]").prop('checked', false);
             $(element).prop('checked', true);

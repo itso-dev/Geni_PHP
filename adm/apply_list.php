@@ -10,8 +10,25 @@
       $_GET['page']=1;
     }
 
+    $over = '';
+    $over_data = '';
+    if(isset($_POST['over']) || isset($_GET['over']))
+    {
+        $over = true;
+        $over_data = "&over=true";
+    }
+    $dup = '';
+    $dup_data = '';
+    if(isset($_POST['dup']) || isset($_GET['dup']))
+    {
+        $dup = true;
+        $dup_data = "&dup=true";
+    }
 
-    // 선택삭제 쿼리
+
+
+
+// 선택삭제 쿼리
 
     $req = isset($_POST['req']) ? $_POST['req'] : '';
 
@@ -111,7 +128,14 @@
         recommender_name like '%$stx%' OR 
         birth_date like '%$stx%' OR 
         agree like '%$stx%' OR 
-        writer_ip like '%$stx%' )";
+        writer_ip like '%$stx%' OR 
+        apply_num like '%$stx%' OR 
+        apply_date like '%$stx%' OR 
+        apply_time like '%$stx%' OR 
+        apply_modify_yn like '%$stx%' OR 
+        apply_modify_date like '%$stx%' OR 
+        apply_modify_date like '%$stx%'       
+        )";
     }
 
 
@@ -121,12 +145,45 @@
      $first = ($_GET['page']*$list_size)-$list_size;
 
 
-    $list_sql = "select * from contact_tbl "
-                .$sch_manager_key
-                .$sch_c_result_key
-                .$sch_date_key
-                .$stx_key
-                ." order by id desc limit $first, $list_size";
+
+
+    $list_sql = "";
+    if($over){
+        $list_sql = "SELECT 
+              t1.* 
+            FROM 
+              contact_tbl AS t1
+            JOIN (
+              SELECT 
+                apply_num
+              FROM 
+                contact_tbl 
+              GROUP BY 
+                apply_num 
+              HAVING 
+                COUNT(apply_num) > 1
+            ) AS t2
+            ON 
+              t1.apply_num = t2.apply_num"
+            ." order by apply_num desc, id desc limit $first, $list_size";
+    } else if($dup){
+        $list_sql = "SELECT *
+            FROM contact_tbl
+            WHERE (apply_date, apply_time) IN (
+                SELECT apply_date, apply_time
+                FROM contact_tbl
+                GROUP BY apply_date, apply_time
+                HAVING COUNT(*) >= 6
+            )
+            ORDER BY apply_date desc, apply_time desc, id desc limit $first, $list_size";
+    }else{
+        $list_sql = "select * from contact_tbl "
+            .$sch_manager_key
+            .$sch_c_result_key
+            .$sch_date_key
+            .$stx_key
+            ." order by id desc limit $first, $list_size";
+    }
 
     $list_stt=$db_conn->prepare($list_sql);
     $list_stt->execute();
@@ -152,7 +209,14 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="./css/apply_list.css" rel="stylesheet" />
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+        <!--    초과 지원 확인    -->
+        <form name="overform" id="overform" method="post">
+            <input type="hidden" name="over" value="1">
+        </form>
+        <!--    초과 지원 확인    -->
+        <form name="dupform" id="dupform" method="post">
+            <input type="hidden" name="dup" value="1">
+        </form>
         <form name="fboardlist" id="fboardlist" method="post" onsubmit="return fboardlist_submit(this);">
             <input type="hidden" name="sst" value="a.wr_id">
             <input type="hidden" name="sod" value="desc">
@@ -170,6 +234,8 @@
                             <button type="submit" value="검색" onclick="document.pressed = this.value">삭제방지</button>
                         </div>
                         <button type="submit" name="act_button" id="delete_btn" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-danger btn-sm shadow">선택삭제</button>
+                        <span onclick="overSubmit();" style="background-color: #dc3d3d;" class="btn btn-red btn-sm shadow">지원번호 중복 조회</span>
+                        <span onclick="dupSubmit();" style="background-color: #dc3d3d;" class="btn btn-red btn-sm shadow">초과 면접 일정 조회</span>
                         <button type="submit" id="export_chks" class="btn btn-primary btn-sm float-right shadow" onclick="document.pressed = '다운로드'" data-href="./ajax/apply_list_export.php">선택 엑셀 다운로드</button>
                         <a id="export_all" href="./ajax/apply_list_export.php?type=all" target="_self" class="btn btn-sm float-right shadow">전체 엑셀 다운로드</a>
                         <a id="export_upload" style="background-color: green;" href="exel_upload_form.php?menu=1" target="_self" class="btn btn-sm float-right shadow">엑셀 업로드</a>
@@ -196,6 +262,7 @@
                     <div class="row mx-0 mb-2">
                         <div class="col-6 col-md-2 my-1 my-md-0 px-1">
                             <select class="custom-select custom-select-sm rounded-0" name="sch_manager">
+                                <option value="0">없음</option>
                                 <?php
                                 while($admin_row1=$admin_stt->fetch()){
                                     ?>
@@ -232,7 +299,7 @@
                 </div>
                 <div class="page-body">
                     <div class="table-responsive">
-                        <table class="table border-bottom border-top" style="min-width: 2200px;">
+                        <table class="table border-bottom border-top" style="min-width: 2300px;">
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 70px;"><input type="checkbox" class="checkbox-controller" onclick="check_all(this)"></th>
@@ -243,12 +310,12 @@
                                     <th scope="col" style="width: 192px;">출생년도</th>
                                     <th scope="col" style="width: 600px;">지원자 거주지</th>
                                     <th scope="col" style="width: 250px;">희망 근무지</th>
-                                    <th scope="col" style="width: 300px;">희망 먼접 일자</th>
+                                    <th scope="col" style="width: 300px;">희망 면접 일자</th>
                                     <th scope="col" style="width: 210px;">면접 시간</th>
                                     <th scope="col" style="width: 330px;">면접 일정 변경</th>
                                     <th scope="col" style="width: 260px;">변경 신청일</th>
-                                    <th scope="col" style="width: 250px;">추천인 정보</th>
-                                    <th scope="col" style="width: 250px;">추천인 상세</th>
+                                    <th scope="col" style="width: 260px;">추천인 정보</th>
+                                    <th scope="col" style="width: 260px;">추천인 상세</th>
                                     <th scope="col" style="width: 410px;">인재풀 등록</th>
                                      <th scope="col" style="width: 150px;">상담내역</th>
                                     <th scope="col" style="width: 159px;">결과</th>
@@ -330,7 +397,7 @@
                                 </tr>
                                 <?php } ?>
                                 <?php if($is_data != 1) { ?>
-                                <tr><td colspan="20" class="text-center text-dark bg-light">문의 사항이 없습니다.</td></tr> </tbody>
+                                <tr><td colspan="20" class="text-center text-dark bg-light">데이터가 없습니다.</td></tr> </tbody>
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -350,13 +417,13 @@
                                         $back=1;
                                     }
                                     echo "<li class='page-item'>";
-                                    echo "  <a class='page-link' href='$_SERVER[PHP_SELF]?page=$back'>처음</a>";
+                                    echo "  <a class='page-link' href='$_SERVER[PHP_SELF]?menu=1&page=$back$over_data$dup_data'>처음</a>";
                                     echo "</li>";
                                 }
                                 for($i=$start_page; $i<=$end_page; $i++){
                                     if($_GET['page']!=$i){
                                         echo "<li class='page-item'>";
-                                        echo "  <a class='page-link' href='$_SERVER[PHP_SELF]?page=$i'>";
+                                        echo "  <a class='page-link' href='$_SERVER[PHP_SELF]?menu=1&page=$i$over_data$dup_data'>";
                                         echo "      $i ";
                                         echo "  </a>";
                                         echo "</li>";
@@ -374,7 +441,7 @@
                                         $next=$total_page;
                                     }
                                     echo "<li class='page-item'>";
-                                    echo "<a class='page-link' href='$_SERVER[PHP_SELF]?page=$next'>맨끝</a>";
+                                    echo "<a class='page-link' href='$_SERVER[PHP_SELF]?page=$next$over_data$dup_data'>맨끝</a>";
                                     echo "</li>";
                                 }
                             ?>
@@ -390,16 +457,17 @@
 <!-- content-box-wrap end -->
 
 
-<!-- Popup Modal -->
-<?
-
-
-?>
 <div class="modal-container">
 </div>
 
 
 <script type="text/javascript">
+    function overSubmit(){
+        $("#overform").submit();
+    }
+    function dupSubmit(){
+        $("#dupform").submit();
+    }
 
 // 상담 상태 동적 변경
 function changeResultStatus(index, result){

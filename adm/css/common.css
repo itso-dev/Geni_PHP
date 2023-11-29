@@ -320,6 +320,13 @@
 .btn-danger:hover{
     background-color: #009cb3 !important;
 }
+.btn-red {
+    background-color: #dc3d3d;
+    color: #fff;
+}
+.btn-red:hover{
+    background-color: #c81a1a !important;
+}
 /* page body */
 .page-body {
     padding: 15px 15px 10px;

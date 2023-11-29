@@ -54,6 +54,12 @@ if ( !$adm_login ) {
                         <p>지점 관리</p>
                     </a>
                 </li>
+                <li <?php if($menu == 33) echo "class='active'" ?> >
+                    <a href="interview_form.php?menu=33">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>면접 일정 관리</p>
+                    </a>
+                </li>
                 <li <?php if($menu == 2) echo "class='active'" ?> >
                     <a href="config_form.php?menu=2">
                         <i class="fas fa-list-ul"></i>
@@ -72,14 +78,13 @@ if ( !$adm_login ) {
                         <p>담당자 설정</p>
                     </a>
                 </li>
-
-                <li class="line"></li>
-                <li <?php if($menu == 6) echo "class='active'" ?> >
-                    <a href="sms_service.php?menu=10" class="pay-menu">
-                        <i class="far fa-bell"></i>
-                        <p>알림문자 설정</p>
-                    </a>
-                </li>
+<!--                <li class="line"></li>-->
+<!--                <li --><?php //if($menu == 6) echo "class='active'" ?><!-- >-->
+<!--                    <a href="sms_service.php?menu=10" class="pay-menu">-->
+<!--                        <i class="far fa-bell"></i>-->
+<!--                        <p>알림문자 설정</p>-->
+<!--                    </a>-->
+<!--                </li>-->
             </ul>
         </div>
         <div class="service-center-wrap">

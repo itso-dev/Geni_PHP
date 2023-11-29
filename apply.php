@@ -203,7 +203,7 @@ if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])){
                     <div class="field-input-text-wrap">
                         <p class="field-text">*띄어쓰기 없이 정확하게 입력해 주세요.</p>
                         <div class="input-wrap">
-                            <input type="text" name="name" oninput="onInput(this, 'name')" minlength="2"
+                            <input type="text" id="name" pattern="[a-zA-Z가-힣]+" name="name" oninput="onInput(this, 'name'); validateInput(this);" minlength="2"
                                    onchange="onInput(this, 'name')" class="text-input" placeholder="나지니" required />
                         </div>
                     </div>
@@ -211,7 +211,8 @@ if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])){
                 <div class="field-wrap">
                     <p class="field-title">2. 지원자 연락처 <span>(필수)</span><b class="star">*</b></p>
                     <div class="field-input-text-wrap">
-                        <p class="field-text">*숫자만 입력해 주세요.</p>
+                        <p class="field-text">*숫자만 입력해 주세요.<br>
+                            *연락처를 잘못 입력하는 사례가 많이 발생하고 있습니다. 연락처가 정확한지 다시 한 번 확인해 주세요!</p>
                         <div class="input-wrap">
                             <input type="number" name="phone" maxlength="11" oninput="onInput(this, 'phone'); this.value=this.value.replace(/[^0-9]/g,''); maxLengthCheck(this);" pattern=".{11,11}"
                                    onchange="onInput(this, 'phone')" class="text-input" placeholder="01012345678"
@@ -840,8 +841,14 @@ if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])){
 
 
     });
+    function validateInput(inputElement) {
+        const inputValue = inputElement.value;
+        const pattern = /^[a-zA-Z가-힣]*$/;
 
-
+        if (!pattern.test(inputValue)) {
+            inputElement.value = inputValue.replace(/[^a-zA-Z가-힣]/g, '');
+        }
+    }
     function locateChk(element, locate, name, address) {
         $("input[name=location]").prop('checked', false);
         $(element).prop('checked', true);

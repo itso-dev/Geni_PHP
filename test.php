@@ -5,24 +5,32 @@ error_reporting( E_ALL );
 ini_set( "display_errors", 1 );
 
 $posted = date("Y-m-d H:i:s");
-$name = $_POST["name"];
-$phone = substr($_POST["phone"], 0, 3) ."-" .substr($_POST["phone"], 3, 4) ."-" .substr($_POST["phone"], 7, 4);
-$birth_date = $_POST["birth_date"];
-$address = $_POST["address1"];
-$location = $_POST["location"];
-$recommender = $_POST["recommender"];
-$recommender_name = $_POST["recommender_name"];
-$apply_date = substr($_POST["apply_date"], 0 , 10);
-$apply_time = $_POST["apply_time"];
 
-$apply_locate = $_POST["apply_locate"];
-$apply_name = $_POST["apply_name"];
-$apply_address = $_POST["apply_address"];
-$apply_subway = str_replace('<br>', " / " ,$_POST["apply_subway"]);;
+$n_year = str_replace('-', '', substr($posted,2, 8));;
+$n_time = str_replace('-', '', substr($posted,11, 2)) .str_replace('-', '', substr($posted,14, 2));
+$n_order = '';
 
-$rdate = date('Y-m-d',strtotime($apply_date."-1 day"));
+$no_sql = "SELECT count(*) as cnt FROM contact_tbl where write_date >= DATE_ADD(NOW(), INTERVAL -30 MINUTE)";
+$no_stt=$db_conn->prepare($no_sql);
+$no_stt->execute();
+$contact_cnt = $no_stt -> fetch();
 
-$rdate_val = substr($rdate, 0, 4) .substr($rdate, 5, 2) .substr($rdate, 8, 2);
-echo $rdate_val;
-;
+$n_order = sprintf('%02d', $contact_cnt['cnt']);
+$apply_no = $n_year.$n_time.$n_order;
+
+//지원번호 중복체크
+$noChk_sql = "SELECT count(*) as cnt FROM contact_tbl where apply_num = $apply_no";
+$noChk_stt=$db_conn->prepare($noChk_sql);
+$noChk_stt->execute();
+$noChk_cnt = $noChk_stt -> fetch();
+//echo $apply_no;
+if($noChk_cnt['cnt'] > 0){
+    $n_order = sprintf('%02d', ++$contact_cnt['cnt']);
+    $apply_no = $n_year.$n_time.$n_order;
+}
+
+//print_r($n_year.$n_time.$n_order);
+
+
+
 ?>

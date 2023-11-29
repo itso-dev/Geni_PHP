@@ -435,7 +435,26 @@
   text-align: left;
   width: 100%;
 }
-
+#apply-container .apply-page .c-btn-wrap{
+  width: 100%;
+  text-align: center;
+}
+#apply-container .apply-page .c-btn-wrap .btn {
+  color: #fff;
+  font-size: 26px;
+  font-family: "S-Core Dream";
+  font-weight: 600;
+  line-height: 125%;
+  letter-spacing: -1.3px;
+  border-radius: 7px;
+  background: #02167c;
+  padding: 20px 10px;
+  margin-top: 50px;
+  cursor: pointer;
+  display: inline-block;
+  max-width: 405px;
+  width: 90%;
+}
 #apply-container .apply-page .submit-btn {
   color: #fff;
   font-size: 26px;
@@ -445,9 +464,12 @@
   letter-spacing: -1.3px;
   border-radius: 7px;
   background: #02167c;
-  padding: 20px 152px;
+  padding: 20px 10px;
   margin-top: 150px;
   cursor: pointer;
+  max-width: 405px;
+  width: 90%;
+  text-align: center;
 }
 
 .apply-completion {
@@ -916,6 +938,7 @@
   }
 }
 @media (max-width: 1024px) {
+  #apply-container .apply-page .c-btn-wrap .btn,
   #apply-container .apply-page .submit-btn {
     font-size: 22px;
     line-height: 120%;
@@ -1040,7 +1063,7 @@
     padding: 18px 25px;
     font-size: 18px;
   }
-
+  #apply-container .apply-page .c-btn-wrap .btn,
   #apply-container .apply-page .submit-btn {
     font-size: 20px;
     line-height: 120%;
@@ -1114,7 +1137,7 @@
     font-size: 24px;
   }
   #apply-container .apply-page .submit-btn{
-    margin-top: 100px;
+    margin-top: 80px;
   }
   .info-box .inner ul li:after {
     top: 17px;
@@ -1151,11 +1174,11 @@
   #apply-container .apply-page .sub-title {
     font-size: 18px;
   }
+  #apply-container .apply-page .c-btn-wrap .btn,
   #apply-container .apply-page .submit-btn {
     font-size: 18px;
     white-space: nowrap;
-    margin-top: 100px;
-    padding: 17px 152px;
+    padding: 17px 10px;
   }
   #apply-container .apply-page .input-checkbox-wrap {
     font-size: 16px;
@@ -1194,6 +1217,9 @@
     font-size: 20px;
     margin-bottom: 15px;
     display: inline-block;
+  }
+  #apply-container .apply-page .c-btn-wrap .btn{
+    margin-top: 25px;
   }
   #apply-container .apply-page .submit-btn{
     margin-top: 50px;

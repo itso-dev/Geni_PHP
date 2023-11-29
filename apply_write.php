@@ -1,12 +1,12 @@
 <script>
-window.onpageshow = function(event) {
-    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-        // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
-        location.href="/";
-    }
-</scrip>
+    window.onpageshow = function(event) {
+        if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+            // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+            location.href="/";
+        }
+    </scrip>
 
-<?php
+    <?php
     include_once('head.php');
     date_default_timezone_set('Asia/Seoul');
     error_reporting( E_ALL );
@@ -63,7 +63,7 @@ window.onpageshow = function(event) {
 
 
 
-if( isset( $_POST["agree"] ) ){
+    if( isset( $_POST["agree"] ) ){
         $agree = $_POST["agree"];
     }else{
         $agree = "N";
@@ -80,13 +80,28 @@ if( isset( $_POST["agree"] ) ){
     }
     $writer_ip = $_POST["writer_ip"];
 
-    //지원번호 생성
-    $i_date = str_replace('-', '', $apply_date);
-    $no_sql = "select count(*) as cnt from contact_tbl where write_date > curdate();";
+    $n_year = str_replace('-', '', substr($posted,2, 8));
+    $n_time = str_replace('-', '', substr($posted,11, 2)) .str_replace('-', '', substr($posted,14, 2));
+    $n_order = '';
+
+    $no_sql = "SELECT count(*) as cnt FROM contact_tbl where write_date >= DATE_ADD(NOW(), INTERVAL -30 MINUTE)";
     $no_stt=$db_conn->prepare($no_sql);
     $no_stt->execute();
     $contact_cnt = $no_stt -> fetch();
-    $apply_no  = $i_date .sprintf('%02d',$contact_cnt['cnt']);
+
+    $n_order = sprintf('%02d', $contact_cnt['cnt']);
+    $apply_no = $n_year.$n_time.$n_order;
+
+    //지원번호 중복체크
+    $noChk_sql = "SELECT count(*) as cnt FROM contact_tbl where apply_num = $apply_no";
+    $noChk_stt=$db_conn->prepare($noChk_sql);
+    $noChk_stt->execute();
+    $noChk_cnt = $noChk_stt -> fetch();
+    //echo $apply_no;
+    if($noChk_cnt['cnt'] > 0){
+        $n_order = sprintf('%02d', ++$contact_cnt['cnt']);
+        $apply_no = $n_year.$n_time.$n_order;
+    }
 
     $yoil = array("일","월","화","수","목","금","토");
 
@@ -115,7 +130,16 @@ if( isset( $_POST["agree"] ) ){
     }
     else{
 
-        $msg = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n입사지원이 완료되었습니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n면접 변경은 하단 링크를 통해 변경 가능합니다.\r\nhttps://genie.imforyou.co.kr/apply_modify_login.php\r\n\r\n지원해 주셔서 감사합니다.\r\n
+        //운수사 정보 불러오기
+        $l_sql = "SELECT * FROM locate_tbl WHERE name='$location'";
+        $l_stt=$db_conn->prepare($l_sql);
+        $l_stt->execute();
+        $l = $l_stt -> fetch();
+
+
+
+
+        $msg = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n입사지원이 완료되었습니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 운수사 연락처 : ".$l['phone']."\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n지원 정보 확인 및 면접 일정 변경은 하단 링크에서 확인 하실 수 있습니다.\r\nhttps://genie.imforyou.co.kr/apply_completion.php?applyNo=$apply_no\r\n\r\n지원해 주셔서 감사합니다.\r\n
         ";
 
         /**************** 문자전송하기 예제 필독항목 ******************/
@@ -212,7 +236,7 @@ if( isset( $_POST["agree"] ) ){
         $rdate_val = substr($rdate, 0, 4) .substr($rdate, 5, 2) .substr($rdate, 8, 2);
         $time_val = str_replace(':', "" ,$apply_time);;
 
-        $msg2 = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n신청하신 지니 채용 면접이 내일 ".$time."시에 진행 될 예정입니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n준비 서류 서류 지참하셔서 면접 시작 10분 전까지 도착해 주시기 바랍니다.r\n\r\n감사합니다.";
+        $msg2 = "안녕하세요 ".$name."님\r\ni.M 택시 '지니' 채용팀 입니다.\r\n신청하신 지니 채용 면접이 내일 ".$time."시에 진행 될 예정입니다.\r\n\r\n- 지원 번호: $apply_no\r\n- 희망 근무지 : $location\r\n- 위치 : $apply_address\r\n- 운수사 연락처 : ".$l['phone']."\r\n- 교통 : $apply_subway\r\n- 면접 일정 : $apply_date_val\r\n- 준비 서류\r\n① 이력서\r\n② 운전면허증 사본(1종 보통 이상)\r\n③ 운전경력 증명서(전체 경력)\r\n\r\n준비 서류 서류 지참하셔서 면접 시작 10분 전까지 도착해 주시기 바랍니다.\r\n\r\n감사합니다.";
 
         /**************** 문자전송하기 예제 필독항목 ******************/
         /* 동일내용의 문자내용을 다수에게 동시 전송하실 수 있습니다
@@ -248,7 +272,7 @@ if( isset( $_POST["agree"] ) ){
         $sms['testmode_yn'] = empty($_POST['testmode_yn']) ? '' : $_POST['testmode_yn'];
         $sms['title'] = $_POST['subject'];
         $sms['msg_type'] = $_POST['msg_type'];
-    // 만일 $_FILES 로 직접 Request POST된 파일을 사용하시는 경우 move_uploaded_file 로 저장 후 저장된 경로를 사용하셔야 합니다.
+        // 만일 $_FILES 로 직접 Request POST된 파일을 사용하시는 경우 move_uploaded_file 로 저장 후 저장된 경로를 사용하셔야 합니다.
         if(!empty($_FILES['image']['tmp_name'])) {
             $tmp_filetype = mime_content_type($_FILES['image']['tmp_name']);
             if($tmp_filetype != 'image/png' && $tmp_filetype != 'image/jpg' && $tmp_filetype != 'image/jpeg') $_POST['image'] = '';
@@ -259,7 +283,7 @@ if( isset( $_POST["agree"] ) ){
                 }
             }
         }
-    // 이미지 전송 설정
+        // 이미지 전송 설정
         if(!empty($_POST['image'])) {
             if(file_exists($_POST['image'])) {
                 $tmpFile = explode('/',$_POST['image']);
@@ -288,7 +312,7 @@ if( isset( $_POST["agree"] ) ){
         curl_close($oCurl);
 
         $retArr = json_decode($ret); // 결과배열
-    // print_r($retArr); // Response 출력 (연동작업시 확인용)
+        // print_r($retArr); // Response 출력 (연동작업시 확인용)
         $msg_id = "";
         foreach ($retArr as $key => $val) {
             if ($key == 'msg_id') {
@@ -296,14 +320,224 @@ if( isset( $_POST["agree"] ) ){
             }
         }
 
+
+
+        //카카오 알림
+
+        /*
+        -----------------------------------------------------------------------------------
+        알림톡 토큰 생성
+        -----------------------------------------------------------------------------------
+        API호출 URL의 유효시간을 결정하며 URL 의 구성중 "30"은 요청의 유효시간을 의미하며, "s"는 y(년), m(월), d(일), h(시), i(분), s(초) 중 하나이며 설정한 시간내에서만 토큰이 유효합니다.
+        운영중이신 보안정책에 따라 토큰의 유효시간을 특정 기간만큼 지정할 경우 매번 호출할 필요없이 해당 유효시간내에 재사용 가능합니다.
+        주의하실 점은 서버를 여러대 운영하실 경우 토큰은 서버정보를 포함하므로 각 서버에서 생성된 토큰 문자열을 사용하셔야 하며 토큰 문자열을 공유해서 사용하실 수 없습니다.
+        */
+
+        $_apiURL	  =	'https://kakaoapi.aligo.in/akv10/token/create/30/s/';
+        $_hostInfo	=	parse_url($_apiURL);
+        $_port		  =	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+        $_variables	=	array(
+            'apikey' => 'msx3um4l58t21mo8zplfvp76ulctny2k',
+            'userid' => 'jmpc1'
+        );
+
+        $oCurl = curl_init();
+        curl_setopt($oCurl, CURLOPT_PORT, $_port);
+        curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+        curl_setopt($oCurl, CURLOPT_POST, 1);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $ret = curl_exec($oCurl);
+        $error_msg = curl_error($oCurl);
+        curl_close($oCurl);
+
+// 리턴 JSON 문자열 확인
+//  print_r($ret . PHP_EOL);
+
+// JSON 문자열 배열 변환
+        $retArr = json_decode($ret);
+
+// 결과값 출력
+//  print_r($retArr);
+        $token = "";
+        foreach ($retArr as $key => $val) {
+            if($key == 'token'){
+                $token = $val;
+            }
+        }
+
+
+        /*
+        code : 0 성공, 나머지 숫자는 에러
+        message : 결과 메시지
+        */
+        /*
+        -----------------------------------------------------------------------------------
+        알림톡 전송
+        -----------------------------------------------------------------------------------
+        버튼의 경우 템플릿에 버튼이 있을때만 버튼 파라메더를 입력하셔야 합니다.
+        버튼이 없는 템플릿인 경우 버튼 파라메더를 제외하시기 바랍니다.
+        */
+
+        $rdate_kakao = date('YmdHis',strtotime($apply_date."-1 day"));
+        $rdate_kakao_val = substr($rdate_kakao, 0, 8)."100000";
+
+
+
+        $_apiURL = 'https://kakaoapi.aligo.in/akv10/alimtalk/send/';
+        $_hostInfo = parse_url($_apiURL);
+        $_port = (strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+        $_variables = array(
+            'apikey' => 'msx3um4l58t21mo8zplfvp76ulctny2k',
+            'userid' => 'jmpc1',
+            'token' => $token,
+            'senderkey' => '81bd75a4ea9f924b0c53be35539a10ca59b1dae8',
+            'tpl_code' => 'TO_6506',
+            'sender' => '010-3444-5450',
+            'senddate' => $rdate_kakao_val,
+            'receiver_1' => $phone,
+            'recvname_1' => $name,
+            'subject_1' => "아이.엠 택시 '지니'",
+            'emtitle_1' => '면접일정 및 제출서류 안내',
+            'message_1' => "안녕하세요 ".$name."님
+i.M 택시 '지니' 채용팀 입니다.
+신청하신 지니 채용 면접이 내일 ".$time."시에 진행 될 예정입니다.
+
+- 지원 번호 : ".$apply_no."
+- 희망 근무지 : ".$location."
+- 운수사 연락처 : ".$l['phone']."
+- 위치 : ".$l['address']."
+- 교통 : ".$apply_subway."
+- 면접 일정 : ".$apply_date_val."
+- 준비 서류
+  ① 이력서
+  ② 운전면허증 사본(1종 보통 이상)
+  ③ 운전경력 증명서(전체 경력)
+
+준비 서류 지참하셔서 면접 시작 10분전까지 도착해 주시기 바랍니다.
+
+감사합니다.",
+
+            'button_1' => '{
+"button": [{
+"name": "채널 추가",
+"linkType": "AC",
+"linkTypeName": "채널 추가"
+},
+{"name": "나의 지원 확인",
+"linkType": "WL",
+"linkTypeName": "웹링크",
+"linkPc": "https://genie.imforyou.co.kr/apply_completion.php?applyNo='.$apply_no.'",
+"linkMo" : "https://genie.imforyou.co.kr/apply_completion.php?applyNo='.$apply_no.'"
+}]
+}' // 템플릿에 버튼이 없는경우 제거하시기 바랍니다.
+        );
+
+        $oCurl = curl_init();
+        curl_setopt($oCurl, CURLOPT_PORT, $_port);
+        curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+        curl_setopt($oCurl, CURLOPT_POST, 1);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $ret = curl_exec($oCurl);
+        $error_msg = curl_error($oCurl);
+        curl_close($oCurl);
+
+// 리턴 JSON 문자열 확인
+
+// JSON 문자열 배열 변환
+        $retArr = json_decode($ret);
+
+        $kMid = "";
+        foreach ($retArr as $key => $val) {
+            if($key == 'info') {
+                foreach ($val as $k => $v) {
+                    if($k == 'mid') {
+                        $kMid = $v;
+                    }
+                }
+            }
+        }
+
+
+        $_apiURL = 'https://kakaoapi.aligo.in/akv10/alimtalk/send/';
+        $_hostInfo = parse_url($_apiURL);
+        $_port = (strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+        $_variables = array(
+            'apikey' => 'msx3um4l58t21mo8zplfvp76ulctny2k',
+            'userid' => 'jmpc1',
+            'token' => $token,
+            'senderkey' => '81bd75a4ea9f924b0c53be35539a10ca59b1dae8',
+            'tpl_code' => 'TO_6505',
+            'sender' => '010-3444-5450',
+            'receiver_1' => $phone,
+            'recvname_1' => $name,
+            'subject_1' => "아이.엠 택시 '지니'",
+            'emtitle_1' => '면접일정 및 제출서류 안내',
+            'message_1' => "안녕하세요 ".$name."님
+i.M 택시 '지니' 채용팀 입니다.
+입사지원이 완료되었습니다.
+
+- 지원 번호 : ".$apply_no."
+- 희망 근무지 : ".$location."
+- 운수사 연락처 : ".$l['phone']."
+- 위치 : ".$l['address']."
+- 교통 : ".$apply_subway."
+- 면접 일정 : ".$apply_date_val."
+- 준비 서류
+  ① 이력서
+  ② 운전면허증 사본(1종 보통 이상)
+  ③ 운전경력 증명서(전체 경력)
+
+
+지원해 주셔서 감사합니다.",
+
+            'button_1' => '{
+"button": [{
+"name": "채널 추가",
+"linkType": "AC",
+"linkTypeName": "채널 추가"
+},
+{"name": "나의 지원 확인",
+"linkType": "WL",
+"linkTypeName": "웹링크",
+"linkPc": "https://genie.imforyou.co.kr/apply_completion.php?applyNo='.$apply_no.'",
+"linkMo" : "https://genie.imforyou.co.kr/apply_completion.php?applyNo='.$apply_no.'"
+}]
+}' // 템플릿에 버튼이 없는경우 제거하시기 바랍니다.
+        );
+
+        $oCurl = curl_init();
+        curl_setopt($oCurl, CURLOPT_PORT, $_port);
+        curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+        curl_setopt($oCurl, CURLOPT_POST, 1);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $ret = curl_exec($oCurl);
+        $error_msg = curl_error($oCurl);
+        curl_close($oCurl);
+
+// 리턴 JSON 문자열 확인
+
+// JSON 문자열 배열 변환
+        $retArr = json_decode($ret);
+
+
+
         /**** Response 예문 끝 ****/
 
         $sql = "insert into contact_tbl
             (name, phone, birth_date, address, location, recommender, recommender_name, agree, result_status,
-             consult_fk, manager_fk, writer_ip, write_date, apply_num, apply_date, apply_time, apply_modify_yn, msg_id)
+             consult_fk, manager_fk, writer_ip, write_date, apply_num, apply_date, apply_time, apply_modify_yn, msg_id, k_msg_id)
         value
             (?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
         $db_conn->prepare($sql)->execute(
             [
@@ -324,7 +558,8 @@ if( isset( $_POST["agree"] ) ){
                 $apply_date,
                 $apply_time,
                 'N',
-                $msg_id
+                $msg_id,
+                $kMid
             ]
         );
         $contact_cnt_sql = "insert into contact_log_tbl
@@ -336,16 +571,18 @@ if( isset( $_POST["agree"] ) ){
             [1, $posted]
         );
 
+
+
         echo "<script type='text/javascript'>";
         echo "dataLayer.push({";
         echo "'event' : 'apply-false'";
         echo "});";
         echo "try{";
         echo "setTimeout(function(){";
-        echo "location.href = '/apply_completion.php?locate=$location&applyDate=$apply_date_val&applyNo=$apply_no';";
+        echo "location.href = '/apply_completion.php?applyNo=$apply_no';";
         echo "}, 500);";
         echo "}catch(e){}";
         echo "</script>";
     }
 
-?>
+    ?>
